@@ -89,7 +89,7 @@ function latest_posts_call($atts, $content = null)
             <?php foreach ($posts as $post) {
                 $terms = get_the_terms($post->ID, 'category');
                 $term = $terms[0] ?? '';
-                $thumbnail_url = has_post_thumbnail($post->ID) ? get_the_post_thumbnail_url($post, 'large') : '';
+                $thumbnail_url = has_post_thumbnail($post->ID) ? get_the_post_thumbnail_url($post, 'petite-stories-noresize') : '';
                 $post_url = get_the_permalink($post->ID);
                 $author_id = get_the_author_meta('ID');
                 $author_name = get_the_author_meta('display_name', $author_id);
@@ -171,7 +171,7 @@ function popular_posts_call($atts, $content = null)
             <?php foreach ($posts as $post) {
                 $terms = get_the_terms($post->ID, 'category');
                 $term = $terms[0] ?? '';
-                $thumbnail_url = has_post_thumbnail($post->ID) ? get_the_post_thumbnail_url($post, 'large') : '';
+                $thumbnail_url = has_post_thumbnail($post->ID) ? get_the_post_thumbnail_url($post, 'petite-stories-noresize') : '';
                 $post_url = get_the_permalink($post->ID);
                 $author_id = get_the_author_meta('ID');
                 $author_name = get_the_author_meta('display_name', $author_id);
