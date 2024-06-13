@@ -270,7 +270,7 @@ function post_meta_data(int $post_id = 0)
                         }
                         ?>
                         <li class="wp-social-link">
-                            <a href="<?php echo esc_url($social_link); ?>" target="_blank" rel="nofollow" class="wp-block-social-link-anchor">
+                            <a href="<?php echo esc_url($social_link); ?>" target="_blank" rel="noreferrer noopener" class="wp-block-social-link-anchor">
                                 <img src="<?php echo esc_url($thumbnail_url); ?>" alt="Icon image">
                             </a>
                         </li>
@@ -295,4 +295,46 @@ function get_popular_posts(int $limit = 4)
         DESC LIMIT 
         $limit"
     );
+}
+
+function adv_link()
+{
+    $link = get_field('adv_link', 'options');
+    if (empty($link)) {
+        return;
+    }
+
+    $url = $link['url'] ?? '';
+    $title = $link['title'] ?? '';
+    $target = $link['target'] ?? '';
+
+    ?>
+    <style>
+        .post_adv_link {
+            margin: 20px 0;
+        }
+        .post_adv_link .elementor-button {
+            padding: 15px 30px;
+            min-width: 200px;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+        }
+        @media (max-width: 600px) {
+            .post_adv_link .elementor-button {
+                width: 100%;
+            }
+        }
+    </style>
+    <div class="post_adv_link">
+        <div class="elementor-button-wrapper">
+            <a class="elementor-button"
+               href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>">
+                <span class="elementor-button-content-wrapper">
+                    <span class="elementor-button-text"><?php echo esc_html($title); ?></span>
+                </span>
+            </a>
+        </div>
+    </div>
+    <?php
 }

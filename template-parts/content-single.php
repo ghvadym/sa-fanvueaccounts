@@ -23,7 +23,7 @@
 				the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h2>');
 			endif;
 		endif; ?>
-        <?php post_meta_data(get_the_ID()); ?>
+        <?php adv_link(); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
