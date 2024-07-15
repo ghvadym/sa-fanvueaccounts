@@ -1,0 +1,43 @@
+.faq_section {
+    clear: both;
+}
+
+.faq__item {
+    background: linear-gradient(144deg, rgba(28, 8, 63, 1) 9%, rgba(25, 10, 42, 1) 51%, rgba(70, 7, 73, 1) 70%);
+    padding: 32px 40px;
+    border-radius: 24px;
+
+    &:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+    @include response-max($mobile) {
+        padding: 24px;
+        border-radius: 16px;
+    }
+}
+
+.faq__title {
+    margin-bottom: 16px;
+    font-size: 28px;
+
+    @include response-max($mobile) {
+        font-size: 22px;
+        line-height: 24px;
+    }
+}
+
+.faq__text {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 25.2px;
+
+    @include response-max($mobile) {
+        font-size: 16px;
+        line-height: 22.4px;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}
