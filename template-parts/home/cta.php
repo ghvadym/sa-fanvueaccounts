@@ -3,25 +3,25 @@ if (empty($fields)) {
     return;
 }
 
-$imgUrl = !empty($fields['hero_img']) ? wp_get_attachment_image_url($fields['hero_img'], 'full') : '';
+$imgUrl = !empty($fields['cta_img']) ? wp_get_attachment_image_url($fields['cta_img'], 'full') : '';
 ?>
 
 <section class="hero_section">
     <div class="container">
-        <div class="cta__row">
+        <div class="cta__row cta__row_reverse">
             <div class="cta__content">
-                <?php if (!empty($fields['hero_title'])) { ?>
+                <?php if (!empty($fields['cta_title'])) { ?>
                     <h1 class="cta__title">
-                        <?php echo $fields['hero_title']; ?>
+                        <?php echo $fields['cta_title']; ?>
                     </h1>
                 <?php } ?>
-                <?php if (!empty($fields['hero_text'])) { ?>
+                <?php if (!empty($fields['cta_text'])) { ?>
                     <div class="cta__subtitle">
-                        <?php echo $fields['hero_text']; ?>
+                        <?php echo $fields['cta_text']; ?>
                     </div>
                 <?php } ?>
-                <?php if (!empty($fields['hero_link'])) {
-                    echo link_html($fields['hero_link'], 'cta__btn btn');
+                <?php if (!empty($fields['cta_link'])) {
+                    echo link_html($fields['cta_link'], 'cta__btn btn');
                 } ?>
             </div>
             <?php if ($imgUrl) { ?>

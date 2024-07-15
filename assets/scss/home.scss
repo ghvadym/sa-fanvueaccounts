@@ -4,189 +4,56 @@
 
 .hero_section {
     position: relative;
-
-    @include response-min($laptop-landscape) {
-        margin-bottom: 80px;
-        margin-top: 9vw;
-        padding: 0;
-
-        .container {
-            position: relative;
-        }
-    }
-
-    @include response-max($mobile) {
-        height: calc(100vh - 70px);
-
-        img {
-            object-fit: cover;
-        }
-    }
 }
 
-.hero__title {
-    font-size: 70px;
-    line-height: 77px;
-    letter-spacing: 0.02em;
-    margin-bottom: 35px;
+.cta__title {
+    margin-bottom: 24px;
 
     @include response-max($mobile) {
         font-size: 32px;
-        line-height: 35.2px;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
     }
 }
 
-.hero__content {
-    max-width: 604px;
-    position: relative;
-    z-index: 2;
-
-    @include response-min($laptop-portrait) {
-        padding: 50px 0;
-    }
+.cta__btn {
+    text-transform: capitalize;
 }
 
-.hero__bg {
-    position: absolute;
-    right: 0;
-    height: 100%;
-    z-index: 1;
+.cta__row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 
-    &:before {
-        content: '';
-        background: rgb(1, 0, 8);
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        z-index: 3;
-    }
-
-    @include response-min($laptop-landscape) {
-        top: 0;
-        max-width: 1304px;
-        transform: matrix3d(1, 0, 0, -.0006, 0, 1, 0, .0001111, 0, 0, 1, 0, -114, 0, 0, 1);
-
-        &:before {
-            background: linear-gradient(90deg, rgba(1,0,8,1) 0%, rgba(1,0,8,0.68) 24%, rgba(1,0,8,0) 100%);
-            width: 70%;
-        }
+    &.cta__row_reverse {
+        flex-direction: row-reverse;
     }
 
     @include response-max($laptop-landscape - 1) {
-        bottom: 0;
-        width: 100%;
+        flex-direction: column;
 
-        &:before {
-            background: linear-gradient(180deg, rgb(1, 0, 8) 0%, rgba(1, 0, 8, .68) 60%, rgba(1, 0, 8, 0) 100%);
-            width: 100%;
+        &.cta__row_reverse {
+            flex-direction: column-reverse;
         }
-    }
-
-    @include response-max($mobile) {
-        padding-bottom: 25px;
     }
 }
 
-.hero__subtitle {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 44.8px;
+.cta__content {
+    max-width: 584px;
+
+    @include response-max($laptop-landscape - 1) {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.cta__subtitle {
+    font-size: 22px;
+    margin-bottom: 64px;
+    line-height: 1.6;
 
     @include response-max($mobile) {
         font-size: 19px;
-        font-weight: 400;
-        line-height: 26.6px;
-    }
-}
-
-.socials_section {
-    position: relative;
-
-    @include response-max($laptop-landscape) {
-        & + .influencers_section {
-            padding-top: 64px;
-        }
-    }
-
-    @include response-max($mobile) {
-        margin-top: -56px;
-        padding: 0;
-        z-index: 1;
-
-        .container {
-            padding: 0;
-        }
-    }
-}
-
-.socials__wrap {
-    backdrop-filter: blur(6px);
-    background: rgba(255, 255, 255, 0.05);
-
-    @include response-min($laptop-portrait) {
-        border-radius: 24px;
-    }
-}
-
-.socials__list {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 55px 0;
-
-    @include response-max($mobile) {
-        padding: 16px 0;
-        backdrop-filter: blur(20px);
-        background: rgba(80, 80, 80, 0.1);
-    }
-}
-
-.socials__list_item {
-    width: 45px;
-    height: 45px;
-    position: relative;
-    @include pointer;
-
-    a, img {
-        width: 100%;
-        height: 100%;
-    }
-
-    &:before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        transition: .3s ease-in-out;
-        width: 1px;
-        height: 1px;
-        border-radius: 50%;
-        box-shadow: 0 0 15px 20px #ba00b25c;
-        opacity: 0;
-    }
-
-    @include response-min($desktop) {
-        &:hover {
-            &:before {
-                opacity: 1;
-            }
-        }
-    }
-
-    @include response-max($mobile) {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-@include response-min($header-responsive + 1) {
-    body.home {
-        main {
-            padding-top: 0;
-        }
+        margin-bottom: 32px;
     }
 }

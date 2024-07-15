@@ -14,6 +14,10 @@ get_template_part_var('home/hero', [
 
 get_template_part_var('home/top-accounts');
 
+get_template_part_var('home/cta', [
+    'fields' => $fields
+]);
+
 get_template_part_var('global/faq', [
     'faq_list' => $fields['faq'] ?? []
 ]);

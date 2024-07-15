@@ -1,34 +1,41 @@
 <?php
 
 $categoryName = 'ai-influencers-list';
+$numberposts = wp_is_mobile() ? 4 : POSTS_PER_PAGE;
 
 $posts = _get_posts([
-    'numberposts'   => wp_is_mobile() ? 4 : 8,
-    'category_name' => $categoryName
+    'numberposts'   => $numberposts,
+//    'category_name' => $categoryName
 ]);
 
 if (empty($posts)) {
-    echo sprintf('<h3>%s</h3>', __('There are no influencers', DOMAIN));
+    echo sprintf('<div class="container"><h3>%s</h3></div>', __('There are no models', DOMAIN));
     return;
 }
 ?>
 
-<section class="influencers_section">
+<section class="top_accounts">
     <div class="container">
         <h2 class="title">
-            <?php _e('AI Influencers', DOMAIN); ?>
+            <?php echo sprintf(
+                '%s <span>%s</span>',
+                __('Top', DOMAIN),
+                __('Fanvue Accounts', DOMAIN)
+            ); ?>
         </h2>
-        <div class="articles influencers__list">
+        <div class="articles">
             <?php foreach ($posts as $post) {
                 get_template_part_var('cards/card-post', [
                     'post' => $post
                 ]);
             } ?>
         </div>
-        <div class="articles__btn">
-            <a href="<?php echo home_url($categoryName.DIRECTORY_SEPARATOR); ?>" class="btn">
-                <?php _e('View All Influencers', DOMAIN); ?>
-            </a>
-        </div>
+        <?php if ($posts > $numberposts) { ?>
+            <div class="articles__btn">
+                <span id="articles_load" class="btn" data-page="1">
+                    <?php _e('Load more', DOMAIN); ?>
+                </span>
+            </div>
+        <?php } ?>
     </div>
 </section>

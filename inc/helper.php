@@ -175,7 +175,7 @@ function img_url(string $image_name = '', bool $show = true)
     }
 }
 
-function get_thumbnail_html(int $post_id = 0, string $label = '', string $size = 'large'): string
+function get_thumbnail_html(int $post_id = 0, string $label = '', string $size = 'full'): string
 {
     if (!$post_id) {
         return '';
@@ -217,4 +217,19 @@ function get_api_key(string $key = ''): string
     }
 
     return $keys[$key];
+}
+
+function link_html(array $link = [], string $class = ''): string
+{
+    if (empty($link)) {
+        return '';
+    }
+
+    return sprintf(
+        '<a href="%1$s" target="%2$s<" class="%3$s">%4$s</a>',
+        esc_url($link['url']),
+        esc_attr($link['target'] ?? '_self'),
+        $class,
+        esc_html($link['title'])
+    );
 }

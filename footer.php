@@ -1,7 +1,7 @@
 <?php
 wp_footer();
 
-if (is_category() || is_home() || is_front_page()) {
+if (is_category()) {
     if (is_category()) {
         $faq = get_field('faq', 'options');
     } else {
