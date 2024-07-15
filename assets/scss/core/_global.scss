@@ -45,7 +45,9 @@ a {
 }
 
 p {
-    margin: 0 0 5px 0;
+    &:not(:last-child) {
+        margin-bottom: 5px;
+    }
 }
 
 input,
@@ -90,6 +92,11 @@ h3 {
 .title {
     @extend h2;
     text-align: center;
+}
+
+.subtitle {
+    font-size: 22px;
+    line-height: 1.4;
 }
 
 h1, h2, h3 {
