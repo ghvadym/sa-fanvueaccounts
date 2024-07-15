@@ -94,9 +94,21 @@ h3 {
     text-align: center;
 }
 
+.main_title {
+    margin-bottom: 48px;
+
+    @include response-max($mobile) {
+        font-size: 32px;
+    }
+}
+
 .subtitle {
     font-size: 22px;
     line-height: 1.4;
+
+    @include response-max($mobile) {
+        font-size: 16px;
+    }
 }
 
 h1, h2, h3 {

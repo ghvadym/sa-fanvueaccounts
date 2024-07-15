@@ -57,3 +57,28 @@
         margin-bottom: 32px;
     }
 }
+
+.search__buttons {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+
+    @include response-max($mobile) {
+        gap: 16px;
+    }
+}
+
+.search__button {
+    height: 80px;
+    max-width: 276px;
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include response-max($mobile) {
+        height: 70px;
+    }
+}

@@ -14,8 +14,10 @@
         </div>
         <form role="search" method="get" id="searchform" class="search__form" action="http://fanvue.local/">
             <div class="search__form_body">
-                <input type="text" value="" name="s" id="s" class="search__input">
-                <input type="submit" class="search__btn">
+                <input type="text" value="" name="s" id="s" class="search__input" placeholder="<?php _e('Search', DOMAIN); ?>">
+                <button class="search__btn">
+                    <?php get_svg('arrow-top'); ?>
+                </button>
             </div>
         </form>
         <?php if (!empty($fields['search_buttons'])) { ?>

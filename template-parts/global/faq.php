@@ -6,7 +6,7 @@ if (empty($faq_list)) {
 
 <section class="faq_section">
     <div class="container">
-        <h2 class="title">
+        <h2 class="title main_title">
             <?php _e('FAQs', DOMAIN); ?>
         </h2>
         <div class="faq__list">
