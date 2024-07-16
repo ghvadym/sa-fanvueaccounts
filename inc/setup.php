@@ -12,9 +12,9 @@ function wp_enqueue_scripts_call()
     wp_enqueue_style('main-style', FV_THEME_URL . '/dest/css/app-style.css');
     wp_enqueue_script('main-scripts', FV_THEME_URL . '/dest/js/app-scripts.js', ['jquery'], time());
 
-    wp_localize_script('main-scripts', 'taiajax', [
+    wp_localize_script('main-scripts', 'fvajax', [
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('main-script-nonce')
+        'nonce'   => wp_create_nonce('posts-nonce')
     ]);
 
     if (is_home() || is_front_page()) {

@@ -20,7 +20,7 @@ get_header();
                     } ?>
                 </div>
             <?php } else { ?>
-                <h3 class="posts-none">
+                <h3 class="no-posts-message">
                     <?php _e('Sorry, no content matched your search criteria', DOMAIN); ?>
                 </h3>
             <?php } ?>

@@ -1,11 +1,9 @@
 <?php
 
-$categoryName = 'ai-influencers-list';
 $numberposts = wp_is_mobile() ? 4 : POSTS_PER_PAGE;
 
 $posts = _get_posts([
-    'numberposts'   => $numberposts,
-//    'category_name' => $categoryName
+    'numberposts' => $numberposts
 ]);
 
 if (empty($posts)) {

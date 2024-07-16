@@ -22,11 +22,11 @@ body {
     flex-direction: column;
 
     @include response-min($laptop-landscape) {
-        background: url('../img/Main Background.svg') top / cover no-repeat #fff;
+        background: url('../img/Main Background.svg') top / cover repeat #fff;
     }
 
     @include response-max($laptop-landscape - 1) {
-        background: url('../img/Main Background Mobile.svg') top / cover no-repeat #fff;
+        background: url('../img/Main Background Mobile.svg') top / cover repeat #fff;
     }
 }
 
@@ -248,6 +248,18 @@ section {
     z-index: 6;
     backdrop-filter: blur(2px);
     min-height: 500px;
+}
+
+._spinner:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url('../img/preloader.gif') center / contain no-repeat;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
 }
 
 .btn {
