@@ -2,14 +2,8 @@
 wp_footer();
 
 if (is_category()) {
-    if (is_category()) {
-        $faq = get_field('faq', 'options');
-    } else {
-        $faq = get_field('faq');
-    }
-
     get_template_part_var('global/faq', [
-        'faq_list' => $faq
+        'faq_list' => get_field('faq', 'options')
     ]);
 }
 

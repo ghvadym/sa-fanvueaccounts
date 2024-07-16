@@ -293,7 +293,7 @@ section {
 }
 
 .breadcrumbs {
-    margin-bottom: 20px;
+    margin: 20px 0;
 
     & > span {
         display: flex;
@@ -303,7 +303,7 @@ section {
         row-gap: 10px;
 
         span {
-            font-size: 24px;
+            font-size: 18px;
             line-height: 1;
 
             a {
@@ -688,6 +688,16 @@ body.single-post {
             &:hover {
                 transform: scale(0.9);
             }
+        }
+    }
+}
+
+.archive {
+    .search {
+        margin-bottom: 48px;
+
+        @include response-max($mobile) {
+            margin-bottom: 32px;
         }
     }
 }

@@ -23,6 +23,7 @@ function wp_enqueue_scripts_call()
 
     if (is_archive() || is_tax() || is_tag()) {
         wp_enqueue_style('archive-styles', FV_THEME_URL . '/dest/css/archive.css');
+        wp_enqueue_script('archive-scripts', FV_THEME_URL . '/dest/js/archive-scripts.js', ['jquery'], time());
     }
 
     if (is_single()) {

@@ -5,6 +5,7 @@
         const burgerOpen = $('.header_burger_icon');
         const burgerClose = $('.header_close_icon');
         const header = $('#header');
+        const searchForm = $('#search_form');
         const isDesktop = $(window).width() > 1024;
 
         if ($(window).width() < 1320) {
@@ -49,7 +50,7 @@
         const articlesLoadBtn = $('#articles_load');
         if (articlesLoadBtn.length) {
             articlesLoadBtn.on('click', function (e) {
-                const search = $('#s');
+                const search = $('.search__input');
                 let pageNumber = $(this).attr('data-page');
                 pageNumber = parseInt(pageNumber) + 1;
 
@@ -58,6 +59,16 @@
                 } else {
                     ajaxPosts('', pageNumber);
                 }
+            });
+        }
+
+        if (searchForm.length) {
+            $(document).on('submit', '#search_form', function (e) {
+                e.preventDefault();
+                const searchInput = $(this).find('.search__input');
+                $('#articles_load').attr('data-page', 1);
+
+                ajaxPosts($(searchInput).val());
             });
         }
 
