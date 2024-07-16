@@ -32,7 +32,7 @@
     </div>
 </header>
 <main class="main">
-    <?php if (!is_home() && !is_front_page()) { ?>
+    <?php if (!is_home() && !is_front_page() && !is_search()) { ?>
         <div class="container">
             <?php breadcrumbs(); ?>
         </div>

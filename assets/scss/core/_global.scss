@@ -21,14 +21,6 @@ body {
     display: flex;
     flex-direction: column;
 
-    &:not(.home) {
-        section {
-            &:first-of-type {
-                padding-top: 0;
-            }
-        }
-    }
-
     @include response-min($laptop-landscape) {
         background: url('../img/Main Background.svg') top / cover no-repeat #fff;
     }
@@ -303,7 +295,7 @@ section {
             line-height: 1;
 
             a {
-                color: rgba(255, 255, 255, 0.3);
+                color: $color-font;
             }
 
             @include response-max($mobile) {
@@ -628,6 +620,61 @@ body.single-post {
 
             @include response-min($laptop-landscape) {
                 display: none;
+            }
+        }
+    }
+}
+
+.pagination-container {
+    margin: 64px 0 0;
+
+    @include response-max($mobile) {
+        margin-bottom: 0;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    & > * {
+        transition: $transition;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+        color: $color-font;
+        font-size: 24px;
+
+        &.current, &:active, &:focus {
+            color: $color-main;
+        }
+
+        @include response-min($desktop) {
+            &:hover {
+                &:not(.dots) {
+                    color: $color-main;
+                }
+            }
+        }
+    }
+
+    .next, .prev {
+        svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            filter: brightness(0) invert(0.4);
+            transition: $transition;
+        }
+
+        @include response-min($desktop) {
+            &:hover {
+                transform: scale(0.9);
             }
         }
     }
