@@ -14,7 +14,7 @@ if (empty($posts)) {
 
 <section class="top_accounts">
     <div class="container">
-        <h2 class="title main_title">
+        <h2 class="title_main">
             <?php echo sprintf(
                 '%s <span>%s</span>',
                 __('Top', DOMAIN),

@@ -2,149 +2,191 @@
 @import "core/variables";
 @import "core/mixins";
 
-.card__img {
-    aspect-ratio: 10/11;
+.single__title {
+    text-align: center;
+    @include color-gradient;
+    margin-bottom: 32px;
+
+    @include response-max($mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+.thumbnail {
+    display: block;
+    aspect-ratio: 2.6 / 1;
     overflow: hidden;
     border-radius: 12px;
-    margin-bottom: 24px;
 
     img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 
     @include response-max($mobile) {
-        margin-bottom: 12px;
+        aspect-ratio: 2 / 1;
     }
 }
 
-.card__body {
-    & > * {
-        &:not(:last-child) {
-            margin-bottom: 24px;
+.section_content {
+    max-width: 1042px;
+    margin: 0 auto;
+}
 
-            @include response-max($mobile) {
-                margin-bottom: 16px;
+.single__content {
+    .text_block {
+        padding: 24px;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0 4px 12px 0 rgba(141, 110, 109, 0.1);
+    }
+
+    .single__content_img {
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 48px;
+    }
+}
+
+.single__content_row {
+    display: flex;
+    row-gap: 32px;
+    column-gap: 24px;
+
+    .card {
+        max-width: 379px;
+        width: 100%;
+        padding: 24px;
+        gap: 8px;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0 4px 12px 0 rgba(141, 110, 109, 0.1);
+        flex-shrink: 0;
+        height: fit-content;
+    }
+
+    @include response-max($laptop-landscape - 1) {
+        flex-direction: column;
+    }
+}
+
+.card__img {
+    aspect-ratio: 2/2.5;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 8px;
+
+    img {
+        object-fit: cover;
+    }
+}
+
+.card__title {
+    @include color-gradient;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.card__btn {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 8px;
+    height: 53px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__socials {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.card__social {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+
+    img {
+        transition: $transition;
+        transform-origin: center;
+    }
+
+    @include response-min($desktop) {
+        &:hover {
+            img {
+                transform: scale(1.1);
             }
         }
     }
 }
 
-.card__title {
-    font-size: 28px !important;
-    font-weight: 400;
-    line-height: 1.4 !important;
-}
+.onlyfans_content {
+    .card__img {
+        aspect-ratio: 1/1;
+        position: relative;
 
-.card__socials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 6px;
-    grid-row-gap: 8px;
-
-    @include response-max($mobile) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.card__social {
-    padding: 11px 0;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgb(71, 0, 186);
-    background: linear-gradient(45deg, rgb(71 0 186 / 40%) 0%, rgb(186 0 178 / 37%) 100%);
-
-    &.full {
-        grid-column: span 3;
-        white-space: normal;
-
-        a {
-            text-transform: lowercase;
-            text-align: left;
-            max-width: 75%;
-            @include line-break(1);
-            overflow: hidden;
-        }
-
-        @include response-max($mobile) {
-            grid-column: span 2;
+        .card__img_tag {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(251, 162, 173, 1);
+            color: #fff;
+            padding: 8px 16px;
+            border-bottom-right-radius: 12px;
         }
     }
 
-    svg {
-        width: 17px;
-        height: 17px;
-        margin-right: 6px;
-        flex-shrink: 0;
-    }
-
-    span {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 18px;
-        text-transform: uppercase;
-    }
-}
-
-.card__social_btn {
-    width: 100%;
-    height: 46px;
-    font-size: 20px;
-}
-
-.single__content {
-    background: linear-gradient(144deg, rgba(28, 8, 63, 1) 9%, rgba(25, 10, 42, 1) 51%, rgba(70, 7, 73, 1) 70%);
-    padding: 32px 40px;
-    border-radius: 24px;
-
-    &:not(:last-child) {
-        margin-bottom: 40px;
-
-        @include response-max($mobile) {
-            margin-bottom: 16px;
-        }
-    }
-
-    @include response-min($laptop-landscape) {
-        display: grid;
-    }
-
-    @include response-max($mobile) {
-        padding: 24px;
-    }
-
-    &:not(.card) {
-        @include text-block;
-    }
-
-    &.card {
-        margin: 0 32px 32px 0;
+    .card {
+        max-width: 277px;
         width: 100%;
-        padding: 24px;
-        border-radius: 16px;
-        background: rgb(71, 0, 186);
-        background: linear-gradient(30deg, rgb(28, 8, 63) 9%, rgb(25, 10, 42) 64%, rgb(70, 7, 73) 84%);
+    }
 
-        @include response-min($laptop-landscape) {
-            max-width: 392px;
-            float: left;
-        }
-
-        @include response-max($laptop-landscape - 1) {
-            margin: 0 0 64px;
+    @include response-max($mobile) {
+        .text_block {
+            padding: 0;
+            background-color: unset;
+            border-radius: 0;
+            box-shadow: unset;
         }
     }
 }
 
-.single_blog {
-    h1 {
-        font-size: 54px;
-        line-height: 60px;
+.socials__slider {
+    //height: 320px;
 
-        @include response-max($laptop-portrait) {
-            font-size: 32px;
-            line-height: 35px;
+    .swiper-wrapper {
+        align-items: center;
+        margin-left: -16px;
+    }
+}
+
+.socials__slider_item {
+    width: 276px;
+    height: 342px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: $transition;
+    transform: scale3d(0.9, 0.9, 1) !important;
+
+    &.swiper-slide-active {
+        transform: scale3d(1.0, 1.0, 1) !important;
+        margin: 0 16px;
+
+        .testimonial__body {
+            background: linear-gradient(148.73deg, #7059FF 1.16%, #7B41C4 99.16%);
         }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
     }
 }

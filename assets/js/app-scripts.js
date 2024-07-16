@@ -119,5 +119,54 @@
                 }
             });
         }
+
+        const singleSlider = new Swiper('.socials__slider', {
+            slidesPerView      : 5,
+            center             : true,
+            centeredSlides     : true,
+            loop               : true,
+            speed              : 1000,
+            grabCursor         : true,
+            keyboard           : true,
+            allowTouchMove     : true,
+            longSwipes         : false,
+            simulateTouch      : true,
+            slideToClickedSlide: true,
+            autoplay           : {
+                delay            : 3000,
+                pauseOnMouseEnter: true
+            },
+            mousewheel         : {
+                forceToAxis: true
+            },
+            navigation         : {
+                nextEl: '.single__button_next',
+                prevEl: '.single__button_prev'
+            },
+            breakpoints        : {
+                0   : {
+                    autoplay     : false,
+                    slidesPerView: 1.3,
+                    speed        : 500
+                },
+                768 : {
+                    slidesPerView: 3
+                },
+                1024: {
+                    slidesPerView: 5
+                },
+                1025: {
+                    loop         : true,
+                    speed        : 1000,
+                    mousewheel   : {
+                        forceToAxis: true
+                    },
+                    autoplay     : {
+                        delay            : 3000,
+                        pauseOnMouseEnter: true
+                    }
+                }
+            }
+        });
     });
 })(jQuery);

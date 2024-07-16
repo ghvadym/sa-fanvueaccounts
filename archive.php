@@ -5,7 +5,7 @@ $term = get_queried_object();
 
     <section class="archive">
         <div class="container">
-            <h1 class="archive__title main_title">
+            <h1 class="archive__title title_main">
                 <?php echo $term->name; ?>
             </h1>
             <div class="archive__posts">

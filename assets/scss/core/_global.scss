@@ -86,7 +86,8 @@ h3 {
     text-align: center;
 }
 
-.main_title {
+.title_main {
+    @extend .title;
     margin-bottom: 48px;
 
     @include response-max($mobile) {
@@ -176,7 +177,7 @@ img {
 }
 
 section {
-    padding: 50px 0;
+    padding: 64px 0;
     position: relative;
 
     &:last-of-type {
@@ -184,7 +185,7 @@ section {
     }
 
     @include response-max($laptop-landscape) {
-        padding: 32px 0;
+        padding: 40px 0;
 
         &:last-of-type {
             padding-bottom: 64px;
@@ -453,24 +454,6 @@ body.single-post {
     }
 }
 
-.thumbnail {
-    display: block;
-    aspect-ratio: 2.6 / 1;
-    overflow: hidden;
-    border-radius: 12px;
-    margin-bottom: 32px;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    @include response-max($mobile) {
-        display: none;
-    }
-}
-
 .table {
     border-radius: 16px;
     overflow: hidden;
@@ -698,6 +681,43 @@ body.single-post {
 
         @include response-max($mobile) {
             margin-bottom: 32px;
+        }
+    }
+}
+
+.swiper__nav {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0;
+    column-gap: 16px;
+    position: relative;
+    z-index: 1;
+
+    @include response-max($laptop-landscape - 1) {
+        margin-top: 44px;
+    }
+}
+
+.swiper__nav_item {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    background: rgba(251, 162, 173, 1);
+    border-radius: 50%;
+    transition: $transition;
+    position: relative;
+
+    svg {
+        margin: auto;
+        width: 7px;
+        height: 10px;
+    }
+
+    @include pointer;
+
+    @include response-min($desktop) {
+        &:hover {
+            transform: scale(1.05);
         }
     }
 }
