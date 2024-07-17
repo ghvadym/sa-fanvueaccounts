@@ -20,9 +20,7 @@ $imgUrl = !empty($fields['cta_img']) ? wp_get_attachment_image_url($fields['cta_
                         <?php echo $fields['cta_text']; ?>
                     </div>
                 <?php } ?>
-                <?php if (!empty($fields['cta_link'])) {
-                    echo link_html($fields['cta_link'], 'cta__btn btn');
-                } ?>
+                <?php echo link_html($fields['cta_link'] ?? '', 'cta__btn btn'); ?>
             </div>
             <?php if ($imgUrl) { ?>
                 <div class="cta__img">

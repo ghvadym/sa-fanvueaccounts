@@ -8,7 +8,10 @@
 
 .cta__title {
     margin-bottom: 24px;
-    text-align: left;
+
+    @include response-min($desktop) {
+        text-align: left;
+    }
 
     @include response-max($mobile) {
         font-size: 32px;
@@ -52,7 +55,10 @@
     font-size: 22px;
     margin-bottom: 64px;
     line-height: 1.6;
-    text-align: left;
+
+    @include response-min($desktop) {
+        text-align: left;
+    }
 
     @include response-max($mobile) {
         font-size: 19px;

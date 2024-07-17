@@ -23,15 +23,9 @@ $fields = get_fields($post->ID);
                 <?php the_post_thumbnail('full') ?>
             </div>
         <?php } ?>
-        <?php if (!empty($fields['hero_btn'])) { ?>
-            <div class="about_hero__btn">
-                <a href="<?php echo esc_url($fields['hero_btn']['url'] ?? '') ?>"
-                   target="<?php echo esc_url($fields['hero_btn']['target'] ?? '_self') ?>"
-                   class="card__btn btn">
-                    <?php echo $fields['hero_btn']['title']; ?>
-                </a>
-            </div>
-        <?php } ?>
+        <div class="about_hero__btn">
+            <?php echo link_html($fields['hero_btn'] ?? '', 'card__btn btn'); ?>
+        </div>
     </div>
 </section>
 

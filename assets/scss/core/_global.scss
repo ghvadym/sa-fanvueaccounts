@@ -311,6 +311,10 @@ section {
             border-color: $color-main;
         }
     }
+
+    @include response-max($mobile) {
+        display: block;
+    }
 }
 
 .btn_light {

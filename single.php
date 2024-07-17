@@ -55,13 +55,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                 <?php if (!empty($content[0])) { ?>
                     <div class="text_block">
                         <?php echo $content[0]['text']; ?>
-                        <?php if (!empty($getInTouchLink) && !empty($getInTouchLink['url'])) { ?>
-                            <a href="<?php echo esc_url($getInTouchLink['url'] ?? '') ?>"
-                               target="<?php echo esc_url($getInTouchLink['target'] ?? '_self') ?>"
-                               class="card__btn btn_light">
-                                <?php echo __('Learn more', DOMAIN); ?>
-                            </a>
-                        <?php } ?>
+                        <?php echo link_html($getInTouchLink ?? '', 'card__btn btn_light'); ?>
                     </div>
                 <?php } ?>
             </div>
@@ -91,18 +85,20 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
     <div class="container-sm">
         <div class="single__content">
             <div class="single__content_row">
-                <div class="text_block">
-                    <?php if (!empty($fields['only_fans_title'])) { ?>
-                        <h2>
-                            <?php echo $fields['only_fans_title']; ?>
-                        </h2>
-                    <?php } ?>
-                    <?php if (!empty($fields['only_fans_text'])) { ?>
-                        <?php echo $fields['only_fans_text']; ?>
-                    <?php } ?>
-                </div>
-                <div class="card">
-                    <?php if (!empty($fields['only_fans_img'])) { ?>
+                <?php if (!empty($fields['only_fans_title']) || !empty($fields['only_fans_text'])) { ?>
+                    <div class="text_block">
+                        <?php if (!empty($fields['only_fans_title'])) { ?>
+                            <h2>
+                                <?php echo $fields['only_fans_title']; ?>
+                            </h2>
+                        <?php } ?>
+                        <?php if (!empty($fields['only_fans_text'])) { ?>
+                            <?php echo $fields['only_fans_text']; ?>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+                <?php if (!empty($fields['only_fans_img'])) { ?>
+                    <div class="card">
                         <div class="card__img">
                             <?php if (!empty($fields['only_fans_tag'])) { ?>
                                 <div class="card__img_tag">
@@ -111,20 +107,14 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                             <?php } ?>
                             <?php echo wp_get_attachment_image($fields['only_fans_img'], 'medium'); ?>
                         </div>
-                    <?php } ?>
-                    <div class="card__body">
-                        <?php if (!empty($fields['only_fans_btn'])) { ?>
-                            <a href="<?php echo esc_url($fields['only_fans_btn']['url'] ?? '') ?>"
-                               target="<?php echo esc_url($fields['only_fans_btn']['target'] ?? '_self') ?>"
-                               class="card__btn btn">
-                                <?php echo esc_html($fields['only_fans_btn']['title'] ?: __('Subscribe', DOMAIN)); ?>
-                            </a>
-                        <?php } ?>
-                        <?php get_template_part_var('global/card-socials', [
-                            'socials' => $fields['socials'] ?? []
-                        ]); ?>
+                        <div class="card__body">
+                            <?php echo link_html($fields['only_fans_btn'] ?? '', 'card__btn btn'); ?>
+                            <?php get_template_part_var('global/card-socials', [
+                                'socials' => $fields['socials'] ?? []
+                            ]); ?>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
