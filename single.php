@@ -14,6 +14,12 @@ if (get_field('use_options_banner', 'options')) {
     $bannerUrl = get_field('banner_url', $post->ID);
     $bannerImg = wp_get_attachment_image($postThumbnailId, 'full');
 }
+
+if (get_field('use_options_get_in_touch_link', 'options')) {
+    $getInTouchLink = get_field('get_in_touch_link', 'options');
+} else {
+    $getInTouchLink = get_field('get_in_touch_link', $post->ID);
+}
 ?>
 
 <section class="single_hero">
@@ -42,12 +48,20 @@ if (get_field('use_options_banner', 'options')) {
                 <div class="card">
                     <?php get_template_part_var('cards/card-model', [
                         'post'   => $post,
-                        'fields' => $fields
+                        'fields' => $fields,
+                        'link'   => $getInTouchLink
                     ]); ?>
                 </div>
                 <?php if (!empty($content[0])) { ?>
                     <div class="text_block">
                         <?php echo $content[0]['text']; ?>
+                        <?php if (!empty($getInTouchLink) && !empty($getInTouchLink['url'])) { ?>
+                            <a href="<?php echo esc_url($getInTouchLink['url'] ?? '') ?>"
+                               target="<?php echo esc_url($getInTouchLink['target'] ?? '_self') ?>"
+                               class="card__btn btn_light">
+                                <?php echo __('Learn more', DOMAIN); ?>
+                            </a>
+                        <?php } ?>
                     </div>
                 <?php } ?>
             </div>
@@ -79,9 +93,9 @@ if (get_field('use_options_banner', 'options')) {
             <div class="single__content_row">
                 <div class="text_block">
                     <?php if (!empty($fields['only_fans_title'])) { ?>
-                        <h3>
+                        <h2>
                             <?php echo $fields['only_fans_title']; ?>
-                        </h3>
+                        </h2>
                     <?php } ?>
                     <?php if (!empty($fields['only_fans_text'])) { ?>
                         <?php echo $fields['only_fans_text']; ?>

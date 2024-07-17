@@ -68,3 +68,8 @@ function upload_mimes_types($types)
 
     return $types;
 }
+
+add_filter('wpseo_breadcrumb_separator', 'wpseo_breadcrumb_separator_call', 10, 1);
+function wpseo_breadcrumb_separator_call($separator) {
+    return '<svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.60646 0.912893L6.55424 4.51989C6.69555 4.64873 6.80765 4.80177 6.88414 4.97024C6.96063 5.13872 7 5.31932 7 5.50172C7 5.68411 6.96063 5.86472 6.88414 6.03319C6.80765 6.20167 6.69555 6.3547 6.55424 6.48354L2.60646 10.0905C1.64618 10.9679 9.00529e-07 10.3412 7.92171e-07 9.10175L0 1.88776C-1.08358e-07 0.648286 1.64618 0.0355155 2.60646 0.912893Z" fill="#564C4C"/></svg>';
+};

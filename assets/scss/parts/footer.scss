@@ -179,7 +179,7 @@
     & + [class^='menu'] {
         li {
             &:not(:last-child) {
-                margin-bottom: 8px;
+                margin-bottom: 12px;
             }
 
             a {
@@ -232,7 +232,7 @@
     }
 
     @include response-min($desktop) {
-        .header__title {
+        .logo__title {
             display: none;
         }
     }
@@ -249,7 +249,7 @@
             width: 56px;
         }
 
-        .header__title {
+        .logo__title {
             font-size: 20px;
         }
     }
@@ -262,11 +262,16 @@
 
     @include response-max($laptop-landscape) {
         font-size: 16px;
+        max-width: 80%;
+        margin: 0 auto;
+
+        br {
+            display: none;
+        }
     }
 }
 
 .socials {
-    margin: 0 -10px;
     display: flex;
 
     @include response-min($laptop-landscape - 1) {
@@ -289,7 +294,6 @@
 }
 
 .social__item {
-    margin: 0 10px;
     width: 20px;
     height: 20px;
     position: relative;
@@ -313,7 +317,7 @@
     }
 
     @include response-max($laptop-landscape) {
-        width: 28px;
-        height: 28px;
+        width: 33px;
+        height: 33px;
     }
 }

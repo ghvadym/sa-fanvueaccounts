@@ -47,16 +47,26 @@
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 48px;
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    @include response-max($mobile) {
+        .single__content_img {
+            aspect-ratio: 3 / 2;
+            margin-bottom: 32px;
+        }
     }
 }
 
 .single__content_row {
     display: flex;
-    row-gap: 32px;
-    column-gap: 24px;
+    row-gap: 24px;
+    column-gap: 32px;
 
     .card {
-        max-width: 379px;
         width: 100%;
         padding: 24px;
         gap: 8px;
@@ -68,6 +78,16 @@
         height: fit-content;
     }
 
+    @include response-min($desktop) {
+        .card {
+            max-width: 379px;
+        }
+
+        .text_block .card__btn {
+            display: none;
+        }
+    }
+
     @include response-max($laptop-landscape - 1) {
         flex-direction: column;
     }
@@ -77,23 +97,31 @@
     aspect-ratio: 2/2.5;
     overflow: hidden;
     border-radius: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 
     img {
         object-fit: cover;
+    }
+
+    @include response-max($mobile) {
+        aspect-ratio: 1/1;
     }
 }
 
 .card__title {
     @include color-gradient;
     font-size: 32px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+
+    @include response-max($mobile) {
+        font-size: 24px;
+    }
 }
 
 .card__btn {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     height: 53px;
     font-size: 22px;
     display: flex;
@@ -143,8 +171,13 @@
     }
 
     .card {
-        max-width: 277px;
         width: 100%;
+    }
+
+    @include response-min($desktop) {
+        .card {
+            max-width: 277px;
+        }
     }
 
     @include response-max($mobile) {
@@ -171,16 +204,9 @@
     height: 342px;
     border-radius: 16px;
     overflow: hidden;
-    transition: $transition;
-    transform: scale3d(0.9, 0.9, 1) !important;
 
     &.swiper-slide-active {
-        transform: scale3d(1.0, 1.0, 1) !important;
         margin: 0 16px;
-
-        .testimonial__body {
-            background: linear-gradient(148.73deg, #7059FF 1.16%, #7B41C4 99.16%);
-        }
     }
 
     img {
@@ -188,5 +214,14 @@
         height: 100%;
         object-fit: cover;
         object-position: top;
+    }
+
+    @include response-min($desktop) {
+        transition: $transition;
+        transform: scale3d(0.9, 0.9, 1) !important;
+
+        &.swiper-slide-active {
+            transform: scale3d(1.0, 1.0, 1) !important;
+        }
     }
 }

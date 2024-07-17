@@ -145,9 +145,15 @@
         width: 56px;
         height: 56px;
     }
+
+    @include response-max($mobile) {
+        .logo__title {
+            display: none;
+        }
+    }
 }
 
-.header__title {
+.logo__title {
     padding: 0;
     font-family: 'Inika', serif;
     font-weight: 700;

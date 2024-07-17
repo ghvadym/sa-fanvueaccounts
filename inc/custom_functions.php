@@ -14,11 +14,11 @@ function logo()
     }
 
     if (!is_home() && !is_front_page()) { ?>
-        <a class="header__title" href="<?php echo esc_url(home_url()); ?>">
+        <a class="logo__title" href="<?php echo esc_url(home_url()); ?>">
             <?php echo get_bloginfo('name'); ?>
         </a>
     <?php } else { ?>
-        <span class="header__title">
+        <span class="logo__title">
             <?php echo get_bloginfo('name'); ?>
         </span>
     <?php }

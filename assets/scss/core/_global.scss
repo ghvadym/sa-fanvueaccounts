@@ -52,7 +52,7 @@ h2,
 h3 {
     margin: 0 0 24px;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.4;
 }
 
 h1 {
@@ -92,6 +92,7 @@ h3 {
 
     @include response-max($mobile) {
         font-size: 32px;
+        margin-bottom: 32px;
     }
 }
 
@@ -197,7 +198,7 @@ section {
     flex-grow: 1;
 
     @include response-max($laptop-landscape) {
-        padding-top: 128px;
+        padding-top: 88px;
     }
 }
 
@@ -265,30 +266,61 @@ section {
 
 .btn {
     background: $color-main;
-    display: inline-block;
     color: #fff;
-    font-size: 2rem;
+    border: 1px solid transparent;
+    display: inline-block;
+    font-size: 22px;
     line-height: 1;
     white-space: nowrap;
     font-weight: 400;
     text-align: center;
     padding: 12px 32px;
     position: relative;
-    border: none;
     border-radius: 12px;
     transition: $transition;
+    @include pointer;
 
     &.disabled, &[disabled] {
         opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &:active, &:focus {
+        outline: none;
+        background: #fff;
+        color: $color-main;
+        border-color: $color-main;
     }
 
     @include response-min($desktop) {
-        cursor: pointer;
-
         &:hover, &:focus {
             outline: none;
-            text-decoration: none;
-            opacity: 0.8;
+            background: #fff;
+            color: $color-main;
+            border-color: $color-main;
+        }
+    }
+}
+
+.btn_light {
+    @extend .btn;
+    background: #fff;
+    color: $color-main;
+    border-color: $color-main;
+
+    &:active, &:focus {
+        outline: none;
+        background: $color-main;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+    @include response-min($desktop) {
+        &:hover, &:focus {
+            outline: none;
+            background: $color-main;
+            color: #fff;
+            border: 1px solid transparent;
         }
     }
 }
@@ -310,10 +342,6 @@ section {
             a {
                 color: $color-font;
             }
-
-            @include response-max($mobile) {
-                font-size: 20px;
-            }
         }
 
         i {
@@ -331,29 +359,6 @@ section {
 
         @include response-max($mobile) {
             column-gap: 21px;
-        }
-    }
-}
-
-body.single-post {
-    .breadcrumbs {
-        & > span {
-            span {
-                @include response-max($mobile) {
-                    &:first-child {
-                        position: relative;
-
-                        &:before {
-                            content: '...';
-                            color: rgba(255, 255, 255, 0.3);
-                        }
-
-                        a {
-                            display: none;
-                        }
-                    }
-                }
-            }
         }
     }
 }
