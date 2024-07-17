@@ -19,7 +19,7 @@ if (empty($post)) {
             <?php echo esc_html($link['title'] ?: __('Free Nude Photos', DOMAIN)); ?>
         </a>
     <?php } ?>
-    <?php get_template_part_var('global/socials', [
+    <?php get_template_part_var('global/card-socials', [
         'socials' => $fields['socials'] ?? []
     ]); ?>
 </div>

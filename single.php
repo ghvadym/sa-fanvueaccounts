@@ -75,7 +75,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
 
 <?php if (!empty($content[1])) { ?>
     <section class="section_content">
-        <div class="container">
+        <div class="container-sm">
             <div class="single__content">
                 <?php if (!empty($content[1])) { ?>
                     <div class="text_block">
@@ -88,7 +88,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
 <?php } ?>
 
 <section class="section_content onlyfans_content">
-    <div class="container">
+    <div class="container-sm">
         <div class="single__content">
             <div class="single__content_row">
                 <div class="text_block">
@@ -120,7 +120,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                                 <?php echo esc_html($fields['only_fans_btn']['title'] ?: __('Subscribe', DOMAIN)); ?>
                             </a>
                         <?php } ?>
-                        <?php get_template_part_var('global/socials', [
+                        <?php get_template_part_var('global/card-socials', [
                             'socials' => $fields['socials'] ?? []
                         ]); ?>
                     </div>

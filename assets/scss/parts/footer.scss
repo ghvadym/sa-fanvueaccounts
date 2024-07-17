@@ -273,6 +273,7 @@
 
 .socials {
     display: flex;
+    gap: 24px;
 
     @include response-min($laptop-landscape - 1) {
         justify-content: flex-end;
@@ -280,13 +281,12 @@
 
     @include response-max($laptop-landscape) {
         justify-content: center;
-        gap: 38px;
         flex-wrap: wrap;
     }
 }
 
 .socials__title {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 
     @include response-min($desktop) {
         text-align: right;
@@ -294,8 +294,8 @@
 }
 
 .social__item {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     position: relative;
     z-index: 2;
     transition: $transition;
@@ -306,13 +306,9 @@
         height: 100%;
     }
 
-    img {
-        filter: contrast(0.5);
-    }
-
     @include response-min($desktop) {
         &:hover {
-            transform: scale(0.9);
+            transform: scale(1.1);
         }
     }
 

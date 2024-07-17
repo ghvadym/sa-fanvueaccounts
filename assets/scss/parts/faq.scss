@@ -2,9 +2,6 @@
     .title {
         @include color-gradient;
     }
-
-    max-width: 994px;
-    margin: 0 auto;
 }
 
 .faq__item {

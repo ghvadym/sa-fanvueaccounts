@@ -29,6 +29,10 @@ function wp_enqueue_scripts_call()
     if (is_single()) {
         wp_enqueue_style('single-style', FV_THEME_URL . '/dest/css/single-post.css');
     }
+
+    if (is_page_template('templates/about-us.php')) {
+        wp_enqueue_style('about-style', FV_THEME_URL . '/dest/css/about.css');
+    }
 }
 
 add_action('after_setup_theme', 'after_setup_theme_call');

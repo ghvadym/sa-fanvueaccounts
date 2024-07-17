@@ -6,8 +6,6 @@ if (is_category()) {
         'faq_list' => get_field('faq', 'options')
     ]);
 }
-
-$socials = get_field('socials', 'options');
 ?>
 
 </main>
@@ -32,29 +30,7 @@ $socials = get_field('socials', 'options');
                     'Footer nav 1',
                     'Footer nav 2',
                 ]); ?>
-                <?php if (!empty($socials)) { ?>
-                    <div class="footer__col footer__socials">
-                        <div class="socials__title">
-                            <?php _e('Follow us', DOMAIN); ?>
-                        </div>
-                        <div class="socials">
-                            <?php foreach ($socials as $social) {
-                                $image_url = $social['img'] ?? '';
-                                $link = $social['link'] ?? '';
-
-                                if (!$image_url || !$link) {
-                                    continue;
-                                }
-                                ?>
-                                <div class="social__item">
-                                    <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener nofollow">
-                                        <img src="<?php echo esc_url($image_url); ?>" alt="Social">
-                                    </a>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                <?php } ?>
+                <?php get_template_part_var('global/socials'); ?>
             </div>
             <div class="footer__row">
                 <?php get_widgets([
@@ -62,26 +38,7 @@ $socials = get_field('socials', 'options');
                     'Footer nav 4',
                     'Footer nav 5',
                 ]); ?>
-                <?php if (!empty($socials)) { ?>
-                    <div class="footer__col footer__socials">
-                        <div class="socials">
-                            <?php foreach ($socials as $social) {
-                                $image_url = $social['img'] ?? '';
-                                $link = $social['link'] ?? '';
-
-                                if (!$image_url || !$link) {
-                                    continue;
-                                }
-                                ?>
-                                <div class="social__item">
-                                    <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener nofollow">
-                                        <img src="<?php echo esc_url($image_url); ?>" alt="Social">
-                                    </a>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                <?php } ?>
+                <?php get_template_part_var('global/socials'); ?>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <section class="search">
-    <div class="container">
+    <div class="container-sm">
         <div class="search__head">
             <?php if (!empty($fields['search_title'])) { ?>
                 <h2 class="search__title title">

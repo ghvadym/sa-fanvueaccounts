@@ -19,7 +19,7 @@ if (empty($posts)) {
 ?>
 
 <section class="archive">
-    <div class="container">
+    <div class="container-sm">
         <h1 class="title">
             <?php echo sprintf(
                 '%s <span>%s</span>',

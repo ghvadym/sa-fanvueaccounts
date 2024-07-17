@@ -13,7 +13,7 @@ if ($contentImgId) {
 ?>
 
 <section class="section_content">
-    <div class="container">
+    <div class="container-sm">
         <div class="single__content">
             <?php if ($contentTitle) { ?>
                 <h2 class="title_main">

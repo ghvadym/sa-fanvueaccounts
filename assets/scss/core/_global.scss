@@ -18,6 +18,7 @@ body {
     font-family: 'Montaga', serif;
     font-weight: 300;
     font-size: 1.6rem;
+    line-height: 1.4;
     display: flex;
     flex-direction: column;
 
@@ -97,8 +98,11 @@ h3 {
 }
 
 .subtitle {
-    font-size: 22px;
-    line-height: 1.4;
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 710px;
+    margin: 0 auto;
+    text-align: center;
 
     @include response-max($mobile) {
         font-size: 16px;
@@ -172,6 +176,13 @@ img {
 
 .container {
     max-width: 1248px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container-sm {
+    max-width: 1042px;
     width: 100%;
     margin: 0 auto;
     padding: 0 24px;
@@ -363,69 +374,8 @@ section {
     }
 }
 
-.articles_slider {
-    margin: 0 -16px;
-
-    @include response-max(1319px) {
-        margin: 0 -6px;
-    }
-
-    .article {
-        width: 100%;
-
-        @include response-min(1320px) {
-            margin: 0 16px;
-            max-width: calc(100% / 4 - 32px);
-        }
-
-        @include response-max(1319px) {
-            margin: 0 6px;
-            max-width: 296px;
-        }
-    }
-}
-
-@include response-max(1319px) {
-    .articles_slider_wrap {
-        margin: 0 -32px;
-
-        .articles_slider {
-            padding: 0 32px;
-        }
-    }
-}
-
 .text_block {
     @include text-block;
-}
-
-.text_block_full {
-    @extend .text_block;
-
-    p, strong, li, a, b, span {
-        @include response-min($laptop-portrait) {
-            font-size: 22px;
-            line-height: 31px;
-        }
-    }
-
-    h2 {
-        margin: 40px 0 24px;
-
-        &, strong {
-            font-size: 28px;
-            line-height: 40px;
-
-            @include response-max($mobile) {
-                font-size: 24px;
-                line-height: 36px;
-            }
-        }
-
-        @include response-max($mobile) {
-            margin: 24px 0 16px;
-        }
-    }
 }
 
 .content_block {
@@ -699,7 +649,7 @@ section {
     z-index: 1;
 
     @include response-max($laptop-landscape - 1) {
-        margin-top: 44px;
+        margin-top: 32px;
     }
 }
 
@@ -707,7 +657,7 @@ section {
     width: 56px;
     height: 56px;
     display: flex;
-    background: rgba(251, 162, 173, 1);
+    background: $color-main;
     border-radius: 50%;
     transition: $transition;
     position: relative;
