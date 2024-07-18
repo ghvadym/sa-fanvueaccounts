@@ -3,7 +3,7 @@ if (empty($post)) {
     return;
 }
 
-$thumbnail = get_thumbnail_html($post->ID, $post->post_title);
+$thumbnail = get_thumbnail_html($post->ID, $post->post_title, 'large');
 ?>
 
 <div class="article">

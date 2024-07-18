@@ -48,14 +48,17 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                 <div class="card">
                     <?php get_template_part_var('cards/card-model', [
                         'post'   => $post,
-                        'fields' => $fields,
-                        'link'   => $getInTouchLink
+                        'fields' => $fields
                     ]); ?>
                 </div>
-                <?php if (!empty($content[0])) { ?>
+                <?php if (!empty($fields['fanvue_description'])) { ?>
                     <div class="text_block">
-                        <?php echo $content[0]['text']; ?>
-                        <?php echo link_html($getInTouchLink ?? '', 'card__btn btn_light'); ?>
+                        <?php echo $fields['fanvue_description']; ?>
+                        <?php if (!empty($fields['fanvue_username'])) { ?>
+                            <a href="<?php echo esc_url(home_url($fields['fanvue_username'])); ?>" class="card__btn btn_light">
+                                <?php _e('Free Nude Photos', DOMAIN); ?>
+                            </a>
+                        <?php } ?>
                     </div>
                 <?php } ?>
             </div>
@@ -67,13 +70,27 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
     'fields' => $fields
 ]); ?>
 
-<?php if (!empty($content[1])) { ?>
+<?php if (!empty($content[0])) {
+    if ($content[0]['img']) {
+        $contentImg = wp_get_attachment_image($content[0]['img'], 'full');
+    }
+    ?>
     <section class="section_content">
         <div class="container-sm">
             <div class="single__content">
-                <?php if (!empty($content[1])) { ?>
+                <?php if ($content[0]['title']) { ?>
+                    <h2 class="title_main">
+                        <?php echo $content[0]['title']; ?>
+                    </h2>
+                <?php } ?>
+                <?php if (!empty($contentImg)) { ?>
+                    <div class="single__content_img">
+                        <?php echo $contentImg; ?>
+                    </div>
+                <?php } ?>
+                <?php if (!empty($content[0]['text'])) { ?>
                     <div class="text_block">
-                        <?php echo $content[1]['text']; ?>
+                        <?php echo $content[0]['text']; ?>
                     </div>
                 <?php } ?>
             </div>
@@ -105,7 +122,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                                     <?php echo $fields['only_fans_tag']; ?>
                                 </div>
                             <?php } ?>
-                            <?php echo wp_get_attachment_image($fields['only_fans_img'], 'medium'); ?>
+                            <?php echo wp_get_attachment_image($fields['only_fans_img'], 'large'); ?>
                         </div>
                         <div class="card__body">
                             <?php echo link_html($fields['only_fans_btn'] ?? '', 'card__btn btn'); ?>

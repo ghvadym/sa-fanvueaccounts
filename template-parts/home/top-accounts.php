@@ -14,13 +14,11 @@ if (empty($posts)) {
 
 <section class="top_accounts">
     <div class="container">
-        <h2 class="title_main">
-            <?php echo sprintf(
-                '%s <span>%s</span>',
-                __('Top', DOMAIN),
-                __('Fanvue Accounts', DOMAIN)
-            ); ?>
-        </h2>
+        <?php if (!empty($fields['models_title'])) { ?>
+            <h2 class="title_main">
+                <?php echo $fields['models_title']; ?>
+            </h2>
+        <?php } ?>
         <div class="articles">
             <?php foreach ($posts as $post) {
                 get_template_part_var('cards/card-post', [

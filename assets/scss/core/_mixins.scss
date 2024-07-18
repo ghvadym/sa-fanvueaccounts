@@ -32,7 +32,7 @@
 
 @mixin color-gradient($gradient: linear-gradient(90deg, #F0808E 0%, #D55C6B 100%))
 {
-    background: $gradient;
+    background-image: $gradient;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

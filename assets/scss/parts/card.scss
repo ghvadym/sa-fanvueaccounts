@@ -22,6 +22,18 @@
     }
 }
 
+.article {
+    @include response-min($desktop) {
+        &:hover {
+            .article__img {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
 .article__img {
     margin-bottom: 8px;
     position: relative;
@@ -32,6 +44,7 @@
 
     img {
         object-fit: cover;
+        transition: $transition;
     }
 }
 
@@ -43,10 +56,8 @@
     @include color-gradient;
 
     @include response-min($desktop) {
-        a {
-            &:hover {
-                color: rgba(207, 0, 218, 1);
-            }
+        &:hover {
+            background-image: linear-gradient(90deg, #D55C6B 0%, #D55C6B 100%);
         }
     }
 }

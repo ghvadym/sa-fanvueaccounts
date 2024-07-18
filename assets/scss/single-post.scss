@@ -42,6 +42,7 @@
         overflow: hidden;
         background-color: #fff;
         box-shadow: 0 4px 12px 0 rgba(141, 110, 109, 0.1);
+        width: 100%;
     }
 
     .single__content_img {
@@ -119,10 +120,10 @@
     @include color-gradient;
     font-size: 32px;
     margin-bottom: 12px;
+    text-align: center;
 
     @include response-max($mobile) {
         font-size: 24px;
-        text-align: center;
     }
 }
 
