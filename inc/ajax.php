@@ -11,7 +11,7 @@ function load_posts()
     $data = sanitize_post($_POST);
     $page = $data['page'] ?? 1;
     $search = $data['search'] ?? '';
-    $terms = [];
+    $numberposts = wp_is_mobile() ? 4 : POSTS_PER_PAGE;
 
     if (empty($data)) {
         wp_send_json_error('There is no data');
@@ -21,9 +21,9 @@ function load_posts()
     $args = [
         'post_type'      => 'post',
         'post_status'    => 'publish',
-        'posts_per_page' => POSTS_PER_PAGE,
+        'posts_per_page' => $numberposts,
         'paged'          => $page,
-        'offset'         => ($page - 1) * POSTS_PER_PAGE,
+        'offset'         => ($page - 1) * $numberposts,
         'orderby'        => 'DATE',
         'order'          => 'DESC'
     ];
@@ -54,6 +54,6 @@ function load_posts()
         'posts'     => $html,
         'append'    => $page > 1,
         'count'     => count($posts->posts),
-        'end_posts' => count($posts->posts) < POSTS_PER_PAGE
+        'end_posts' => count($posts->posts) < $numberposts
     ]);
 }

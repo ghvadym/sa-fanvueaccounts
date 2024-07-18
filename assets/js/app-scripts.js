@@ -146,7 +146,7 @@
             breakpoints         : {
                 0   : {
                     autoplay     : false,
-                    slidesPerView: 1.3,
+                    slidesPerView: 1.5,
                     speed        : 500
                 },
                 768 : {

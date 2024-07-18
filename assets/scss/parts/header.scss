@@ -48,6 +48,10 @@
     max-width: 710px;
     margin: 0 auto 48px;
     text-align: center;
+
+    @include response-max($mobile) {
+        margin-bottom: 32px;
+    }
 }
 
 .header__menu {

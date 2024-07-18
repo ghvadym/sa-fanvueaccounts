@@ -13,9 +13,10 @@
         text-align: left;
     }
 
-    @include response-max($mobile) {
+    @include response-max($laptop-landscape - 1) {
         font-size: 32px;
         margin-bottom: 16px;
+        text-align: center;
     }
 }
 
@@ -32,6 +33,12 @@
         flex-direction: row-reverse;
     }
 
+    @include response-min($desktop) {
+        & > .cta__btn {
+            display: none;
+        }
+    }
+
     @include response-max($laptop-landscape - 1) {
         flex-direction: column;
 
@@ -45,24 +52,24 @@
     max-width: 584px;
 
     @include response-max($laptop-landscape - 1) {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+        & > .cta__btn {
+            display: none;
+        }
     }
 }
 
 .cta__subtitle {
     font-size: 22px;
-    margin-bottom: 64px;
     line-height: 1.6;
 
     @include response-min($desktop) {
-        text-align: left;
+        margin-bottom: 64px;
     }
 
-    @include response-max($mobile) {
+    @include response-max($laptop-landscape - 1) {
         font-size: 19px;
-        margin-bottom: 32px;
+        margin-bottom: 0;
+        text-align: center;
     }
 }
 
@@ -74,6 +81,7 @@
 
     @include response-max($mobile) {
         gap: 16px;
+        margin-top: 24px;
     }
 }
 
@@ -81,7 +89,7 @@
     height: 80px;
     max-width: 276px;
     width: 100%;
-    font-size: 24px;
+    font-size: 28px;
     display: flex;
     align-items: center;
     justify-content: center;

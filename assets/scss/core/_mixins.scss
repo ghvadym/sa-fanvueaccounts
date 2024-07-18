@@ -42,16 +42,16 @@
     overflow-x: auto;
 
     &::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;
+        width: 3px;
+        height: 3px;
     }
 
     &::-webkit-scrollbar-track {
-        background: rgba(33,12,66,.9);
+        background: #fff;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #fff;
+        background: #D55C6B;
     }
 }
 

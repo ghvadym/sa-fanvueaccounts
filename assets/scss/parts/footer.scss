@@ -15,7 +15,7 @@
                 margin-bottom: 8px;
 
                 @include response-max($laptop-landscape) {
-                    margin-bottom: 32px;
+                    margin-bottom: 36px;
                 }
             }
         }
@@ -85,6 +85,7 @@
         @include response-min($desktop) {
             .footer__socials {
                 justify-content: flex-end !important;
+                margin-bottom: 5px;
             }
         }
 
@@ -114,7 +115,7 @@
         @include response-max($laptop-landscape) {
             .footer__col {
                 &:nth-child(2), &:nth-child(3) {
-                     margin-bottom: 32px;
+                     margin-bottom: 36px;
                 }
             }
         }
@@ -171,7 +172,7 @@
 
             .footer__col {
                 &:not(:last-child) {
-                    margin-bottom: 20px;
+                    margin-bottom: 32px;
                 }
             }
         }
@@ -292,7 +293,7 @@
 }
 
 .socials__title {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 
     @include response-min($desktop) {
         text-align: right;

@@ -2,6 +2,12 @@
 @import "core/variables";
 @import "core/mixins";
 
+.single_hero {
+    @include response-max($mobile) {
+        padding-bottom: 0;
+    }
+}
+
 .single__title {
     text-align: center;
     @include color-gradient;
@@ -25,7 +31,7 @@
     }
 
     @include response-max($mobile) {
-        aspect-ratio: 2 / 1;
+        aspect-ratio: 2.3/1;
     }
 }
 
@@ -45,6 +51,12 @@
 
         img {
             object-fit: cover;
+        }
+    }
+
+    @include response-max($laptop-landscape - 1) {
+        .text_block .card__btn {
+            margin-bottom: 0;
         }
     }
 
@@ -110,13 +122,14 @@
 
     @include response-max($mobile) {
         font-size: 24px;
+        text-align: center;
     }
 }
 
 .card__btn {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     height: 53px;
     font-size: 22px;
     display: flex;
@@ -127,13 +140,16 @@
 .card__socials {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 32px;
 }
 
 .card__social {
-    width: 40px;
-    height: 40px;
-    padding: 10px;
+    width: 24px;
+    height: 24px;
+
+    a {
+        display: block;
+    }
 
     img {
         transition: $transition;
@@ -151,7 +167,7 @@
 
 .onlyfans_content {
     .card__img {
-        aspect-ratio: 1/1;
+        aspect-ratio: 1/1.1;
         position: relative;
 
         .card__img_tag {

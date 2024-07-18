@@ -40,7 +40,7 @@
         margin-left: -16px;
     }
 
-    @include response-min($desktop) {
+    @include response-max($laptop-landscape - 1) {
         margin-top: 32px;
     }
 }
@@ -133,6 +133,12 @@
 
         img {
             filter: brightness(0) invert(1);
+        }
+    }
+
+    @include response-max($laptop-landscape - 1) {
+        .socials {
+            margin-top: 32px;
         }
     }
 }
