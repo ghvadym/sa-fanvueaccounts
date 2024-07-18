@@ -6,6 +6,8 @@
 get_header();
 $post = get_post();
 $fields = get_fields($post->ID);
+
+$socials = get_field('socials', 'options');
 ?>
 
 <section class="about_hero">
@@ -105,7 +107,9 @@ $fields = get_fields($post->ID);
                 <?php } ?>
             </div>
         <?php } ?>
-        <?php get_template_part_var('global/socials'); ?>
+        <?php get_template_part_var('global/socials', [
+            'socials' => $socials
+        ]); ?>
     </div>
 </section>
 

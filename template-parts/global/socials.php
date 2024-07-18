@@ -1,6 +1,4 @@
 <?php
-$socials = get_field('socials', 'options');
-
 if (empty($socials)) {
     return;
 }

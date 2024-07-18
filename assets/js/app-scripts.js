@@ -121,29 +121,29 @@
         }
 
         const singleSlider = new Swiper('.socials__slider', {
-            slidesPerView      : 5,
-            center             : true,
-            centeredSlides     : true,
-            loop               : true,
-            speed              : 1000,
-            grabCursor         : true,
-            keyboard           : true,
-            allowTouchMove     : true,
-            longSwipes         : false,
-            simulateTouch      : true,
-            slideToClickedSlide: true,
-            autoplay           : {
+            slidesPerView       : 5,
+            centeredSlidesBounds: true,
+            centeredSlides      : true,
+            loop                : true,
+            speed               : 1000,
+            grabCursor          : true,
+            keyboard            : true,
+            allowTouchMove      : true,
+            longSwipes          : false,
+            simulateTouch       : true,
+            slideToClickedSlide : true,
+            autoplay            : {
                 delay            : 3000,
                 pauseOnMouseEnter: true
             },
-            mousewheel         : {
+            mousewheel          : {
                 forceToAxis: true
             },
-            navigation         : {
+            navigation          : {
                 nextEl: '.single__button_next',
                 prevEl: '.single__button_prev'
             },
-            breakpoints        : {
+            breakpoints         : {
                 0   : {
                     autoplay     : false,
                     slidesPerView: 1.3,
@@ -156,12 +156,12 @@
                     slidesPerView: 5
                 },
                 1025: {
-                    loop         : true,
-                    speed        : 1000,
-                    mousewheel   : {
+                    loop      : true,
+                    speed     : 1000,
+                    mousewheel: {
                         forceToAxis: true
                     },
-                    autoplay     : {
+                    autoplay  : {
                         delay            : 3000,
                         pauseOnMouseEnter: true
                     }
@@ -170,29 +170,29 @@
         });
 
         const offersSlider = new Swiper('.offers__slider', {
-            slidesPerView      : 5,
-            center             : true,
-            centeredSlides     : true,
-            loop               : true,
-            speed              : 1000,
-            grabCursor         : true,
-            keyboard           : true,
-            allowTouchMove     : true,
-            longSwipes         : false,
-            simulateTouch      : true,
-            slideToClickedSlide: true,
-            autoplay           : {
+            slidesPerView       : 5,
+            centeredSlides      : true,
+            loop                : true,
+            centeredSlidesBounds: true,
+            speed               : 1000,
+            grabCursor          : true,
+            keyboard            : true,
+            allowTouchMove      : true,
+            longSwipes          : false,
+            simulateTouch       : true,
+            slideToClickedSlide : true,
+            autoplay            : {
                 delay            : 3000,
                 pauseOnMouseEnter: true
             },
-            mousewheel         : {
+            mousewheel          : {
                 forceToAxis: true
             },
-            navigation         : {
+            navigation          : {
                 nextEl: '.offers__button_next',
                 prevEl: '.offers__button_prev'
             },
-            breakpoints        : {
+            breakpoints         : {
                 0   : {
                     autoplay     : false,
                     slidesPerView: 1.3,
@@ -205,12 +205,12 @@
                     slidesPerView: 5
                 },
                 1025: {
-                    loop         : true,
-                    speed        : 1000,
-                    mousewheel   : {
+                    loop      : true,
+                    speed     : 1000,
+                    mousewheel: {
                         forceToAxis: true
                     },
-                    autoplay     : {
+                    autoplay  : {
                         delay            : 3000,
                         pauseOnMouseEnter: true
                     }

@@ -6,6 +6,8 @@ if (is_category()) {
         'faq_list' => get_field('faq', 'options')
     ]);
 }
+
+$socials = get_field('socials', 'options');
 ?>
 
 </main>
@@ -30,7 +32,16 @@ if (is_category()) {
                     'Footer nav 1',
                     'Footer nav 2',
                 ]); ?>
-                <?php get_template_part_var('global/socials'); ?>
+                <?php if (!empty($socials)) { ?>
+                    <div class="footer__col footer__socials">
+                        <div class="socials__title">
+                            <?php _e('Follow us', DOMAIN); ?>
+                        </div>
+                        <?php get_template_part_var('global/socials', [
+                            'socials' => $socials
+                        ]); ?>
+                    </div>
+                <?php } ?>
             </div>
             <div class="footer__row">
                 <?php get_widgets([
@@ -38,7 +49,9 @@ if (is_category()) {
                     'Footer nav 4',
                     'Footer nav 5',
                 ]); ?>
-                <?php get_template_part_var('global/socials'); ?>
+                <?php get_template_part_var('global/socials', [
+                    'socials' => $socials
+                ]); ?>
             </div>
         </div>
     </div>

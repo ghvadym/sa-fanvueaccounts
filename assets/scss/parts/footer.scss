@@ -82,6 +82,12 @@
             }
         }
 
+        @include response-min($desktop) {
+            .footer__socials {
+                justify-content: flex-end !important;
+            }
+        }
+
         @include response-max($laptop-landscape) {
             border: none !important;
             padding-bottom: 0 !important;

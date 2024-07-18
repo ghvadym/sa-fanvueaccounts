@@ -37,6 +37,8 @@ if (empty($posts)) {
                 </div>
             </form>
         </div>
+    </div>
+    <div class="container">
         <div class="articles">
             <?php foreach ($posts as $post) {
                 get_template_part_var('cards/card-post', [

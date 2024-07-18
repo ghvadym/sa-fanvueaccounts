@@ -278,7 +278,6 @@ section {
 .btn {
     background: $color-main;
     color: #fff;
-    border: 1px solid transparent;
     display: inline-block;
     font-size: 22px;
     line-height: 1;
@@ -298,17 +297,13 @@ section {
 
     &:active, &:focus {
         outline: none;
-        background: #fff;
-        color: $color-main;
-        border-color: $color-main;
+        background: #D55C6B;
     }
 
     @include response-min($desktop) {
-        &:hover, &:focus {
+        &:hover {
             outline: none;
-            background: #fff;
-            color: $color-main;
-            border-color: $color-main;
+            background: #D55C6B;
         }
     }
 
@@ -321,21 +316,21 @@ section {
     @extend .btn;
     background: #fff;
     color: $color-main;
-    border-color: $color-main;
+    border: 1px solid $color-main;
 
     &:active, &:focus {
         outline: none;
-        background: $color-main;
-        color: #fff;
-        border: 1px solid transparent;
+        color: #D55C6B;
+        border-color: #D55C6B;
+        background: #fff;
     }
 
     @include response-min($desktop) {
-        &:hover, &:focus {
+        &:hover {
             outline: none;
-            background: $color-main;
-            color: #fff;
-            border: 1px solid transparent;
+            color: #D55C6B;
+            border-color: #D55C6B;
+            background: #fff;
         }
     }
 }
