@@ -643,39 +643,76 @@ section {
     }
 }
 
-.swiper__nav {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0 0;
-    column-gap: 16px;
-    position: relative;
-    z-index: 1;
-
-    @include response-max($laptop-landscape - 1) {
-        margin-top: 32px;
-    }
-}
-
-.swiper__nav_item {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    background: $color-main;
-    border-radius: 50%;
-    transition: $transition;
-    position: relative;
-
-    svg {
-        margin: auto;
-        width: 7px;
-        height: 10px;
+.owl-carousel {
+    .owl-stage {
+        display: flex;
+        align-items: center;
+        margin-left: -16px;
     }
 
-    @include pointer;
+    .owl-item {
+        &.center {
+            margin: 0 16px;
+        }
+
+        &.cloned {
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+
+    .owl-nav {
+        text-align: center;
+        display: flex !important;
+        justify-content: center;
+        column-gap: 16px;
+        margin-top: 48px;
+
+        button {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            background: $color-main !important;
+            border-radius: 50%;
+            transition: $transition;
+            position: relative;
+
+            svg {
+                margin: auto;
+                width: 7px;
+                height: 10px;
+                transition: $transition;
+            }
+
+            @include pointer;
+
+            @include response-min($desktop) {
+                &:hover {
+                    svg {
+                        transform: scale(1.5);
+                    }
+                }
+            }
+        }
+
+        @include response-max($laptop-landscape) {
+            margin-top: 32px;
+        }
+    }
 
     @include response-min($desktop) {
-        &:hover {
-            transform: scale(1.05);
+        .item {
+            transition: $transition;
+            transform: scale3d(0.9, 0.9, 1) !important;
+        }
+
+        .owl-item {
+            &.center {
+                .item {
+                    transform: scale3d(1.0, 1.0, 1) !important;
+                }
+            }
         }
     }
 }

@@ -45,32 +45,30 @@ $socials = get_field('socials', 'options');
                 </div>
             <?php } ?>
         </div>
-        <div class="offers__slider">
-            <div class="swiper-wrapper">
-                <?php foreach ($fields['offers'] as $offer) {
-                    $offerTitle = $offer['title'] ?? '';
-                    $offerText = $offer['text'] ?? '';
+        <div class="offers__slider owl-carousel">
+            <?php foreach ($fields['offers'] as $offer) {
+                $offerTitle = $offer['title'] ?? '';
+                $offerText = $offer['text'] ?? '';
 
-                    if (!$offerTitle && !$offerText) {
-                        continue;
-                    }
-                    ?>
-                    <div class="offers__slider_item swiper-slide">
-                        <div class="offer__item">
-                            <?php if ($offerTitle) { ?>
-                                <div class="offer__title">
-                                    <?php echo esc_html($offerTitle); ?>
-                                </div>
-                            <?php } ?>
-                            <?php if ($offerText) { ?>
-                                <div class="offer__text">
-                                    <?php echo esc_html($offerText); ?>
-                                </div>
-                            <?php } ?>
-                        </div>
+                if (!$offerTitle && !$offerText) {
+                    continue;
+                }
+                ?>
+                <div class="offers__slider_item item">
+                    <div class="offer__item">
+                        <?php if ($offerTitle) { ?>
+                            <div class="offer__title">
+                                <?php echo esc_html($offerTitle); ?>
+                            </div>
+                        <?php } ?>
+                        <?php if ($offerText) { ?>
+                            <div class="offer__text">
+                                <?php echo esc_html($offerText); ?>
+                            </div>
+                        <?php } ?>
                     </div>
-                <?php } ?>
-            </div>
+                </div>
+            <?php } ?>
         </div>
         <div class="container">
             <div class="swiper__nav">

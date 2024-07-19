@@ -120,103 +120,57 @@
             });
         }
 
-        const singleSlider = new Swiper('.socials__slider', {
-            slidesPerView       : 5,
-            centeredSlidesBounds: true,
-            centeredSlides      : true,
-            center              : true,
-            loop                : true,
-            speed               : 1000,
-            grabCursor          : true,
-            keyboard            : true,
-            allowTouchMove      : true,
-            longSwipes          : false,
-            simulateTouch       : true,
-            slideToClickedSlide : true,
-            autoplay            : {
-                delay            : 3000,
-                pauseOnMouseEnter: true
-            },
-            mousewheel          : {
-                forceToAxis: true
-            },
-            navigation          : {
-                nextEl: '.single__button_next',
-                prevEl: '.single__button_prev'
-            },
-            breakpoints         : {
-                0   : {
-                    autoplay     : false,
-                    slidesPerView: 1.5,
-                    speed        : 500
-                },
-                768 : {
-                    slidesPerView: 3
-                },
-                1024: {
-                    slidesPerView: 5
-                },
-                1025: {
-                    loop      : true,
-                    speed     : 1000,
-                    mousewheel: {
-                        forceToAxis: true
+        const carouselSlider = $('.owl-carousel');
+        if (carouselSlider.length) {
+            let carouselSliderArgs = {
+                loop              : true,
+                responsiveClass   : true,
+                nav               : true,
+                dots              : false,
+                margin            : 0,
+                autoplay          : false,
+                touchDrag         : true,
+                mouseDrag         : true,
+                autoplayTimeout   : 3000,
+                smartSpeed        : 1000,
+                center            : true,
+                items             : 4,
+                navText           : [
+                    '<svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.39355 9.58711L0.445756 5.98011C0.304453 5.85127 0.192349 5.69823 0.11586 5.52976C0.0393717 5.36128 0 5.18068 0 4.99828C0 4.81589 0.0393713 4.63528 0.11586 4.46681C0.192349 4.29833 0.304453 4.1453 0.445756 4.01646L4.39354 0.409459C5.35382 -0.467918 7 0.15878 7 1.39825L7 8.61224C7 9.85171 5.35382 10.4645 4.39355 9.58711Z" fill="white"/></svg>',
+                    '<svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.60646 0.412893L6.55424 4.01989C6.69555 4.14873 6.80765 4.30177 6.88414 4.47024C6.96063 4.63872 7 4.81932 7 5.00172C7 5.18411 6.96063 5.36472 6.88414 5.53319C6.80765 5.70167 6.69555 5.8547 6.55424 5.98354L2.60646 9.59054C1.64618 10.4679 9.00529e-07 9.84122 7.92171e-07 8.60175L0 1.38776C-1.08358e-07 0.148286 1.64618 -0.464485 2.60646 0.412893Z" fill="white"/></svg>'
+                ],
+                responsive        : {
+                    0   : {
+                        items: 1.5
                     },
-                    autoplay  : {
-                        delay            : 3000,
-                        pauseOnMouseEnter: true
+                    768 : {
+                        items: 2
+                    },
+                    1024: {
+                        items: 3,
+                    },
+                    1025: {
+                        autoplay          : true,
+                        autoplayHoverPause: true,
+                        mouseDrag         : true,
+                        touchDrag         : true
                     }
                 }
-            }
-        });
+            };
 
-        const offersSlider = new Swiper('.offers__slider', {
-            slidesPerView       : 5,
-            centeredSlides      : true,
-            loop                : true,
-            centeredSlidesBounds: true,
-            speed               : 1000,
-            grabCursor          : true,
-            keyboard            : true,
-            allowTouchMove      : true,
-            longSwipes          : false,
-            simulateTouch       : true,
-            slideToClickedSlide : true,
-            autoplay            : {
-                delay            : 3000,
-                pauseOnMouseEnter: true
-            },
-            mousewheel          : {
-                forceToAxis: true
-            },
-            navigation          : {
-                nextEl: '.offers__button_next',
-                prevEl: '.offers__button_prev'
-            },
-            breakpoints         : {
-                0   : {
-                    autoplay     : false,
-                    slidesPerView: 1.3,
-                    speed        : 500
-                },
-                768 : {
-                    slidesPerView: 3
-                },
-                1024: {
-                    slidesPerView: 5
-                },
-                1025: {
-                    loop      : true,
-                    speed     : 1000,
-                    mousewheel: {
-                        forceToAxis: true
-                    },
-                    autoplay  : {
-                        delay            : 3000,
-                        pauseOnMouseEnter: true
-                    }
-                }
+            if ($('.offers__slider').length) {
+                carouselSliderArgs['responsive']['0']['items'] = 1.3;
             }
-        });
+
+            const carouselSliderOwl = $(carouselSlider).owlCarousel(carouselSliderArgs);
+
+            jQuery(document.documentElement).keydown(function (event) {
+                if (event.keyCode === 37) {
+                    carouselSliderOwl.trigger('prev.owl.carousel', [400]);
+                } else if (event.keyCode === 39) {
+                    carouselSliderOwl.trigger('next.owl.carousel', [400]);
+                }
+            });
+        }
     });
 })(jQuery);

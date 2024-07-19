@@ -76,7 +76,7 @@
         height: fit-content;
     }
 
-    @include response-min($desktop) {
+    @include response-min($laptop-landscape) {
         .card {
             max-width: 379px;
         }
@@ -196,36 +196,18 @@
     }
 }
 
-.socials__slider {
-    .swiper-wrapper {
-        align-items: center;
-        margin-left: -16px;
-    }
-}
-
 .socials__slider_item {
-    width: 276px;
-    height: 342px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.1;
+    margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
-
-    &.swiper-slide-active {
-        margin: 0 16px;
-    }
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: top;
-    }
-
-    @include response-min($desktop) {
-        transition: $transition;
-        transform: scale3d(0.9, 0.9, 1) !important;
-
-        &.swiper-slide-active {
-            transform: scale3d(1.0, 1.0, 1) !important;
-        }
+        object-position: center;
     }
 }

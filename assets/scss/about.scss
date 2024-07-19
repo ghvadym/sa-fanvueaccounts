@@ -35,43 +35,24 @@
 .offers__slider {
     margin-top: 48px;
 
-    .swiper-wrapper {
-        align-items: center;
-        margin-left: -16px;
-    }
-
     @include response-max($laptop-landscape - 1) {
         margin-top: 32px;
     }
 }
 
 .offers__slider_item {
-    width: 276px;
-    min-height: 342px;
+    max-width: 378px;
     border-radius: 16px;
     overflow: hidden;
     padding: 30px 24px;
     background-color: #fff;
     box-shadow: 0 4px 12px 0 rgba(141, 110, 109, 0.1);
 
-    &.swiper-slide-active {
-        margin: 0 16px;
-    }
-
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: top;
-    }
-
-    @include response-min($desktop) {
-        transition: $transition;
-        transform: scale3d(0.9, 0.9, 1) !important;
-
-        &.swiper-slide-active {
-            transform: scale3d(1.0, 1.0, 1) !important;
-        }
     }
 
     @include response-max($mobile) {
