@@ -26,7 +26,7 @@ $socials = get_field('socials', 'options');
             </div>
         <?php } ?>
         <div class="about_hero__btn">
-            <?php echo link_html($fields['hero_btn'] ?? '', 'card__btn btn'); ?>
+            <?php echo link_html($fields['hero_btn'] ?? [], 'card__btn btn'); ?>
         </div>
     </div>
 </section>

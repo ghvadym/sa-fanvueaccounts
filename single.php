@@ -3,7 +3,6 @@
 get_header();
 $post = get_post();
 $fields = get_fields($post->ID);
-$content = $fields['content'] ?? [];
 
 if (get_field('use_options_banner', 'options')) {
     $optionsThumbnailId = get_field('posts_banner', 'options');
@@ -51,14 +50,13 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                         'fields' => $fields
                     ]); ?>
                 </div>
-                <?php if (!empty($fields['fanvue_description'])) { ?>
+                <?php if (!empty($fields['main_info_text'])) { ?>
                     <div class="text_block">
-                        <?php echo $fields['fanvue_description']; ?>
-                        <?php if (!empty($fields['fanvue_username'])) { ?>
-                            <a href="<?php echo esc_url(home_url($fields['fanvue_username'])); ?>" class="card__btn btn_light">
-                                <?php _e('Free Nude Photos', DOMAIN); ?>
-                            </a>
-                        <?php } ?>
+                        <?php echo $fields['main_info_text'];
+
+                        if (!empty($fields['main_info_link'])) {
+                            echo link_html($fields['main_info_link'] ?? [], 'card__btn btn_light');
+                        } ?>
                     </div>
                 <?php } ?>
             </div>
@@ -70,62 +68,56 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
     'fields' => $fields
 ]); ?>
 
-<?php if (!empty($content[0])) {
-    if ($content[0]['img']) {
-        $contentImg = wp_get_attachment_image($content[0]['img'], 'full');
-    }
-    ?>
+<?php if (!empty($fields['gallery_text'])) { ?>
     <section class="section_content">
         <div class="container-sm">
             <div class="single__content">
-                <?php if ($content[0]['title']) { ?>
-                    <h2 class="title_main">
-                        <?php echo $content[0]['title']; ?>
-                    </h2>
-                <?php } ?>
-                <?php if (!empty($contentImg)) { ?>
-                    <div class="single__content_img">
-                        <?php echo $contentImg; ?>
-                    </div>
-                <?php } ?>
-                <?php if (!empty($content[0]['text'])) { ?>
-                    <div class="text_block">
-                        <?php echo $content[0]['text']; ?>
-                    </div>
-                <?php } ?>
+                <div class="text_block">
+                    <?php echo $fields['gallery_text']; ?>
+                </div>
             </div>
         </div>
     </section>
 <?php } ?>
 
-<section class="section_content onlyfans_content">
+<section class="section_content additional_content">
     <div class="container-sm">
         <div class="single__content">
             <div class="single__content_row">
-                <?php if (!empty($fields['only_fans_title']) || !empty($fields['only_fans_text'])) { ?>
+                <?php if (!empty($fields['onlyfans_title']) || !empty($fields['onlyfans_text'])) { ?>
                     <div class="text_block">
-                        <?php if (!empty($fields['only_fans_title'])) { ?>
+                        <?php if (!empty($fields['onlyfans_title'])) { ?>
                             <h2>
-                                <?php echo $fields['only_fans_title']; ?>
+                                <?php echo $fields['onlyfans_title']; ?>
                             </h2>
                         <?php } ?>
-                        <?php if (!empty($fields['only_fans_text'])) { ?>
-                            <?php echo $fields['only_fans_text']; ?>
-                        <?php } ?>
+                        <?php echo !empty($fields['onlyfans_text']) ? $fields['onlyfans_text'] : ''; ?>
                     </div>
                 <?php } ?>
-                <?php if (!empty($fields['only_fans_img'])) { ?>
+                <?php if (!empty($fields['onlyfans_banner_img'])) { ?>
                     <div class="card">
                         <div class="card__img">
-                            <?php if (!empty($fields['only_fans_tag'])) { ?>
+                            <?php if (!empty($fields['onlyfans_banner_tag'])) { ?>
                                 <div class="card__img_tag">
-                                    <?php echo $fields['only_fans_tag']; ?>
+                                    <?php echo $fields['onlyfans_banner_tag']; ?>
                                 </div>
                             <?php } ?>
-                            <?php echo wp_get_attachment_image($fields['only_fans_img'], 'large'); ?>
+
+                            <?php if (!empty($fields['onlyfans_banner_link'])) { ?>
+                                <a href="<?php echo esc_url($fields['onlyfans_banner_link']) ?>" target="_blank">
+                                    <?php echo wp_get_attachment_image($fields['onlyfans_banner_img'], 'large'); ?>
+                                </a>
+                            <?php } else {
+                                echo wp_get_attachment_image($fields['onlyfans_banner_img'], 'large');
+                            } ?>
                         </div>
                         <div class="card__body">
-                            <?php echo link_html($fields['only_fans_btn'] ?? '', 'card__btn btn'); ?>
+                            <?php if (!empty($fields['onlyfans_banner_link'])) { ?>
+                                <a href="<?php echo esc_url($fields['onlyfans_banner_link']); ?>" target="_blank" class="card__btn btn">
+                                    <?php echo !empty($fields['onlyfans_banner_btn_text']) ? $fields['onlyfans_banner_btn_text'] : __('Subscribe', DOMAIN); ?>
+                                </a>
+                            <?php } ?>
+
                             <?php get_template_part_var('global/card-socials', [
                                 'socials' => $fields['socials'] ?? []
                             ]); ?>
@@ -137,8 +129,8 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
     </div>
 </section>
 
-<?php if (!empty($content) && count($content) > 2) { ?>
-    <?php foreach (array_slice($content, 2) as $contentItem) {
+<?php if (!empty($fields['content'])) { ?>
+    <?php foreach ($fields['content'] as $contentItem) {
         get_template_part_var('single/content', [
             'content' => $contentItem
         ]);

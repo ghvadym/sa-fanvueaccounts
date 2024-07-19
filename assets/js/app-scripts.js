@@ -124,6 +124,7 @@
             slidesPerView       : 5,
             centeredSlidesBounds: true,
             centeredSlides      : true,
+            center              : true,
             loop                : true,
             speed               : 1000,
             grabCursor          : true,

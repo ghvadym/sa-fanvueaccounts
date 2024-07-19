@@ -3,8 +3,7 @@ $terms = get_terms([
     'taxonomy'   => ['category', 'post_tag'],
     'orderby'    => 'count',
     'order'      => 'desc',
-    'hide_empty' => true,
-    'number'     => 20
+    'hide_empty' => true
 ]);
 
 if (empty($terms)) {

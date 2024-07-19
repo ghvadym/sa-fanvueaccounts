@@ -219,9 +219,9 @@ function get_api_key(string $key = ''): string
     return $keys[$key];
 }
 
-function link_html(array $link = [], string $class = ''): string
+function link_html($link = [], $class = ''): string
 {
-    if (empty($link)) {
+    if (empty($link) || !is_array($link)) {
         return '';
     }
 

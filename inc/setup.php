@@ -9,6 +9,9 @@ function wp_enqueue_scripts_call()
     wp_enqueue_style('swiper-styles', FV_THEME_URL . '/dest/lib/swiper-slider/swiper.css');
     wp_enqueue_script('swiper-scripts', FV_THEME_URL . '/dest/lib/swiper-slider/swiper.js');
 
+    //wp_enqueue_style('owl-styles', FV_THEME_URL . '/dest/lib/owl-carousel/owl.css');
+    //wp_enqueue_script('owl-scripts', FV_THEME_URL . '/dest/lib/owl-carousel/owl.js');
+
     wp_enqueue_style('main-style', FV_THEME_URL . '/dest/css/app-style.css');
     wp_enqueue_script('main-scripts', FV_THEME_URL . '/dest/js/app-scripts.js', ['jquery'], time());
 
