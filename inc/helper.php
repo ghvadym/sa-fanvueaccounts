@@ -245,19 +245,28 @@ function get_img($imgId = 0, $size = 'full'): string
     return wp_get_attachment_image($imgId, 'full');
 }
 
-function get_banner($imgId = 0, $url = '')
+function get_banner($imgId = 0, $url = ''): string
 {
-    if (!$imgId) {
+    if (!$imgId || !$url) {
         return '';
     }
 
-    if ($url) { ?>
-        <a href="<?php echo esc_url($url); ?>" class="banner" target="_blank" rel="noopener nofollow">
-            <?php echo get_img($imgId); ?>
-        </a>
-    <?php } else { ?>
-        <div class="banner">
-            <?php echo get_img($imgId); ?>
-        </div>
-    <?php }
+    return sprintf(
+        '<a href="%1$s" class="banner" target="_blank" rel="noopener nofollow">%2$s</a>',
+        esc_url($url),
+        get_img($imgId)
+    );
+}
+
+function get_banner_field($key = '', $postFields = [], $optionFields = [], $mob = false)
+{
+    if (!$key || (empty($postFields) && empty($optionFields))) {
+        return null;
+    }
+
+    if ($mob && wp_is_mobile()) {
+        $key .= '_mob';
+    }
+
+    return !empty($postFields[$key]) ? $postFields[$key] : ($optionFields[$key] ?? null);
 }

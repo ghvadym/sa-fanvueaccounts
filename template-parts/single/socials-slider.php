@@ -26,9 +26,12 @@ $i = 1;
                 <div class="socials__slider_item item">
                     <?php echo $slideImg; ?>
                 </div>
-                <?php if ($i === $bannerPosition) { ?>
+                <?php if ($i === $bannerPosition && $sliderBannerImage = get_banner_field('banner_3_img', $fields, $options ?? [])) { ?>
                     <div class="socials__slider_item item">
-                        <?php get_banner($fields['gallery_banner_img'] ?? 0, $fields['gallery_banner_url'] ?? ''); ?>
+                        <?php echo get_banner(
+                            $sliderBannerImage,
+                            get_banner_field('banner_3_url', $fields, $options ?? [])
+                        ); ?>
                     </div>
                 <?php }
 
@@ -38,11 +41,11 @@ $i = 1;
     <?php } ?>
 </section>
 
-<?php if (!empty($fields['gallery_slider_bottom_banner_img'])) { ?>
+<?php if ($bannerImage = get_banner_field('banner_4_img', $fields, $options ?? [], true)) { ?>
     <div class="container">
-        <?php get_banner(
-            !wp_is_mobile() ? ($fields['gallery_slider_bottom_banner_img'] ?? '') : ($fields['gallery_slider_bottom_banner_img_mob'] ?? ''),
-            $fields['gallery_slider_bottom_banner_url'] ?? ''
+        <?php echo get_banner(
+            $bannerImage,
+            get_banner_field('banner_4_url', $fields, $options ?? [])
         ); ?>
     </div>
 <?php } ?>

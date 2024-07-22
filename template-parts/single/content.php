@@ -30,11 +30,11 @@ if ($contentImgId) {
                     <?php echo $contentText; ?>
                 </div>
             <?php } ?>
-            <?php if (!empty($content['banner_img'])) { ?>
+            <?php if (!empty($show_banner) && $contentBanner = get_banner_field('banner_7_img', $fields ?? [], $options ?? [], true)) { ?>
                 <div class="single__content__banner">
-                    <?php get_banner(
-                        !wp_is_mobile() ? ($content['banner_img'] ?? '') : ($content['banner_img_mob'] ?? ''),
-                        $content['banner_url'] ?? ''
+                    <?php echo get_banner(
+                        $contentBanner,
+                        get_banner_field('banner_7_url', $fields ?? [], $options ?? [])
                     ); ?>
                 </div>
             <?php } ?>

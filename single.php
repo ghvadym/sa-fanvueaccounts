@@ -3,24 +3,7 @@
 get_header();
 $post = get_post();
 $fields = get_fields($post->ID);
-
-if (get_field('use_options_banner', 'options')) {
-    if (!wp_is_mobile()) {
-        $thumbnailId = get_field('posts_banner', 'options');
-    } else {
-        $thumbnailId = get_field('posts_banner_mob', 'options');
-    }
-
-    $bannerUrl = get_field('banner_url', 'options');
-} else {
-    if (!wp_is_mobile()) {
-        $thumbnailId = get_field('banner_img', $post->ID);
-    } else {
-        $thumbnailId = get_field('banner_img_mob', $post->ID);
-    }
-
-    $bannerUrl = get_field('banner_url', $post->ID);
-}
+$options = get_fields('options');
 
 if (get_field('use_options_get_in_touch_link', 'options')) {
     $getInTouchLink = get_field('get_in_touch_link', 'options');
@@ -34,7 +17,10 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
         <h1 class="single__title">
             <?php echo $post->post_title; ?>
         </h1>
-        <?php get_banner($thumbnailId, $bannerUrl); ?>
+        <?php echo get_banner(
+            get_banner_field('banner_1_img', $fields, $options, true),
+            get_banner_field('banner_1_url', $fields, $options)
+        ); ?>
     </div>
 </section>
 
@@ -44,8 +30,9 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
             <div class="single__content_row">
                 <div class="card">
                     <?php get_template_part_var('cards/card-model', [
-                        'post'   => $post,
-                        'fields' => $fields
+                        'post'    => $post,
+                        'fields'  => $fields,
+                        'options' => $options
                     ]); ?>
                 </div>
                 <?php if (!empty($fields['main_info_text'])) { ?>
@@ -57,9 +44,12 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                         } ?>
                     </div>
                 <?php } ?>
-                <?php if (!wp_is_mobile() && !empty($fields['main_info_banner_img'])) { ?>
+                <?php if (!wp_is_mobile() && $mainInfoBanner = get_banner_field('banner_2_img', $fields, $options)) { ?>
                     <div class="single__banner">
-                        <?php get_banner($fields['main_info_banner_img'], $fields['main_info_banner_url'] ?? ''); ?>
+                        <?php echo get_banner(
+                            $mainInfoBanner,
+                            get_banner_field('banner_2_url', $fields, $options)
+                        ); ?>
                     </div>
                 <?php } ?>
             </div>
@@ -68,7 +58,8 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
 </section>
 
 <?php get_template_part_var('single/socials-slider', [
-    'fields' => $fields
+    'fields'  => $fields,
+    'options' => $options
 ]); ?>
 
 <?php if (!empty($fields['gallery_text'])) { ?>
@@ -76,11 +67,11 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
         <div class="container">
             <div class="single__content">
                 <div class="single__content_row">
-                    <?php if (!empty($fields['gallery_text_banner_img'])) { ?>
+                    <?php if ($galleryTextBanner = get_banner_field('banner_5_img', $fields, $options)) { ?>
                         <div class="single__banner">
-                            <?php get_banner(
-                                $fields['gallery_text_banner_img'],
-                                $fields['gallery_text_banner_url'] ?? ''
+                            <?php echo get_banner(
+                                $galleryTextBanner,
+                                get_banner_field('banner_5_url', $fields, $options)
                             ); ?>
                         </div>
                     <?php } ?>
@@ -107,7 +98,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                         <?php echo !empty($fields['onlyfans_text']) ? $fields['onlyfans_text'] : ''; ?>
                     </div>
                 <?php } ?>
-                <?php if (!empty($fields['onlyfans_banner_img'])) { ?>
+                <?php if ($onlyFansBanner = get_banner_field('banner_6_img', $fields, $options)) { ?>
                     <div class="card">
                         <div class="card__img">
                             <?php if (!empty($fields['onlyfans_banner_tag'])) { ?>
@@ -116,13 +107,10 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                                 </div>
                             <?php } ?>
 
-                            <?php if (!empty($fields['onlyfans_banner_link'])) { ?>
-                                <a href="<?php echo esc_url($fields['onlyfans_banner_link']) ?>" target="_blank">
-                                    <?php echo wp_get_attachment_image($fields['onlyfans_banner_img'], 'large'); ?>
-                                </a>
-                            <?php } else {
-                                echo wp_get_attachment_image($fields['onlyfans_banner_img'], 'large');
-                            } ?>
+                            <?php echo get_banner(
+                                $onlyFansBanner,
+                                get_banner_field('banner_6_url', $fields, $options)
+                            ); ?>
                         </div>
                         <div class="card__body">
                             <?php if (!empty($fields['onlyfans_banner_link'])) { ?>
@@ -142,11 +130,16 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
     </div>
 </section>
 
-<?php if (!empty($fields['content'])) { ?>
+<?php if (!empty($fields['content'])) { $showBanner = true; ?>
     <?php foreach ($fields['content'] as $contentItem) {
         get_template_part_var('single/content', [
-            'content' => $contentItem
+            'content'     => $contentItem,
+            'fields'      => $fields,
+            'options'     => $options,
+            'show_banner' => $showBanner
         ]);
+
+        $showBanner = false;
     } ?>
 <?php } ?>
 

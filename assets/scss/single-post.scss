@@ -90,7 +90,7 @@
 
     }
 
-    .single__content__banner {
+    .single__banner {
         width: 100%;
     }
 
@@ -99,7 +99,7 @@
             max-width: 379px;
         }
 
-        .single__content__banner {
+        .single__banner {
             max-width: 380px;
         }
 
@@ -253,5 +253,11 @@
         .single__content_row {
             flex-direction: column-reverse;
         }
+    }
+}
+
+.single__banner {
+    @include response-min($laptop-landscape) {
+        max-width: 380px;
     }
 }
