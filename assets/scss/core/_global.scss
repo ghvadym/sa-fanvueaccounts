@@ -339,6 +339,29 @@ section {
     }
 }
 
+.btn_hot {
+    @extend .btn;
+    background: $color-hot;
+    color: #fff;
+    border: 1px solid $color-hot;
+
+    &:active, &:focus {
+        outline: none;
+        color: $color-hot;
+        border-color: $color-hot;
+        background: #fff;
+    }
+
+    @include response-min($desktop) {
+        &:hover {
+            outline: none;
+            color: $color-hot;
+            border-color: $color-hot;
+            background: #fff;
+        }
+    }
+}
+
 .breadcrumbs {
     margin: 20px 0;
 

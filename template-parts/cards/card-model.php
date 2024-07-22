@@ -20,7 +20,7 @@ $thumbnail = get_the_post_thumbnail($post, 'large');
         } ?>
     </h1>
     <?php if (!empty($fields['main_info_link'])) {
-        echo link_html($fields['main_info_link'] ?? [], 'card__btn btn');
+        echo link_html($fields['main_info_link'] ?? [], 'card__btn btn_hot');
     }
     get_template_part_var('global/card-socials', [
         'socials' => $fields['socials'] ?? []
