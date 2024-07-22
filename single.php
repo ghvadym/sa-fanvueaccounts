@@ -5,13 +5,21 @@ $post = get_post();
 $fields = get_fields($post->ID);
 
 if (get_field('use_options_banner', 'options')) {
-    $optionsThumbnailId = get_field('posts_banner', 'options');
+    if (!wp_is_mobile()) {
+        $thumbnailId = get_field('posts_banner', 'options');
+    } else {
+        $thumbnailId = get_field('posts_banner_mob', 'options');
+    }
+
     $bannerUrl = get_field('banner_url', 'options');
-    $bannerImg = $optionsThumbnailId ? wp_get_attachment_image($optionsThumbnailId, 'full') : '';
 } else {
-    $postThumbnailId = get_field('banner_img', $post->ID);
+    if (!wp_is_mobile()) {
+        $thumbnailId = get_field('banner_img', $post->ID);
+    } else {
+        $thumbnailId = get_field('banner_img_mob', $post->ID);
+    }
+
     $bannerUrl = get_field('banner_url', $post->ID);
-    $bannerImg = wp_get_attachment_image($postThumbnailId, 'full');
 }
 
 if (get_field('use_options_get_in_touch_link', 'options')) {
@@ -26,17 +34,7 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
         <h1 class="single__title">
             <?php echo $post->post_title; ?>
         </h1>
-        <?php if ($bannerImg) { ?>
-            <?php if ($bannerUrl) { ?>
-                <a href="<?php echo esc_url($bannerUrl); ?>" class="thumbnail" target="_blank" rel="noopener nofollow">
-                    <?php echo $bannerImg; ?>
-                </a>
-            <?php } else { ?>
-                <div class="thumbnail">
-                    <?php echo $bannerImg; ?>
-                </div>
-            <?php } ?>
-        <?php } ?>
+        <?php get_banner($thumbnailId, $bannerUrl); ?>
     </div>
 </section>
 
@@ -59,6 +57,11 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
                         } ?>
                     </div>
                 <?php } ?>
+                <?php if (!wp_is_mobile() && !empty($fields['main_info_banner_img'])) { ?>
+                    <div class="single__banner">
+                        <?php get_banner($fields['main_info_banner_img'], $fields['main_info_banner_url'] ?? ''); ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -69,11 +72,21 @@ if (get_field('use_options_get_in_touch_link', 'options')) {
 ]); ?>
 
 <?php if (!empty($fields['gallery_text'])) { ?>
-    <section class="section_content">
-        <div class="container-sm">
+    <section class="section_content gallery_text_content">
+        <div class="container">
             <div class="single__content">
-                <div class="text_block">
-                    <?php echo $fields['gallery_text']; ?>
+                <div class="single__content_row">
+                    <?php if (!empty($fields['gallery_text_banner_img'])) { ?>
+                        <div class="single__banner">
+                            <?php get_banner(
+                                $fields['gallery_text_banner_img'],
+                                $fields['gallery_text_banner_url'] ?? ''
+                            ); ?>
+                        </div>
+                    <?php } ?>
+                    <div class="text_block">
+                        <?php echo $fields['gallery_text']; ?>
+                    </div>
                 </div>
             </div>
         </div>

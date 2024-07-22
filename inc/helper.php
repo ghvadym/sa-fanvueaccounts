@@ -226,10 +226,38 @@ function link_html($link = [], $class = ''): string
     }
 
     return sprintf(
-        '<a href="%1$s" target="%2$s<" class="%3$s">%4$s</a>',
+        '<a href="%1$s" target="%2$s" class="%3$s">%4$s</a>',
         esc_url($link['url']),
         esc_attr($link['target'] ?? '_self'),
         $class,
-        esc_html($link['title'])
+        $link['title']
     );
+}
+
+function get_img($imgId = 0, $size = 'full'): string
+{
+    $imgUrl = '';
+
+    if (!$imgId || !is_int($imgId)) {
+        return $imgUrl;
+    }
+
+    return wp_get_attachment_image($imgId, 'full');
+}
+
+function get_banner($imgId = 0, $url = '')
+{
+    if (!$imgId) {
+        return '';
+    }
+
+    if ($url) { ?>
+        <a href="<?php echo esc_url($url); ?>" class="banner" target="_blank" rel="noopener nofollow">
+            <?php echo get_img($imgId); ?>
+        </a>
+    <?php } else { ?>
+        <div class="banner">
+            <?php echo get_img($imgId); ?>
+        </div>
+    <?php }
 }

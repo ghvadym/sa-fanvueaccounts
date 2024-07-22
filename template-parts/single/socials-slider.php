@@ -2,6 +2,9 @@
 if (empty($fields['gallery_title']) && empty($fields['gallery'])) {
     return;
 }
+
+$bannerPosition = 3;
+$i = 1;
 ?>
 
 <section class="single_slider">
@@ -23,8 +26,23 @@ if (empty($fields['gallery_title']) && empty($fields['gallery'])) {
                 <div class="socials__slider_item item">
                     <?php echo $slideImg; ?>
                 </div>
-                <?php
+                <?php if ($i === $bannerPosition) { ?>
+                    <div class="socials__slider_item item">
+                        <?php get_banner($fields['gallery_banner_img'] ?? 0, $fields['gallery_banner_url'] ?? ''); ?>
+                    </div>
+                <?php }
+
+                $i++;
             } ?>
         </div>
     <?php } ?>
 </section>
+
+<?php if (!empty($fields['gallery_slider_bottom_banner_img'])) { ?>
+    <div class="container">
+        <?php get_banner(
+            !wp_is_mobile() ? ($fields['gallery_slider_bottom_banner_img'] ?? '') : ($fields['gallery_slider_bottom_banner_img_mob'] ?? ''),
+            $fields['gallery_slider_bottom_banner_url'] ?? ''
+        ); ?>
+    </div>
+<?php } ?>

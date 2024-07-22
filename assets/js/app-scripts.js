@@ -8,12 +8,6 @@
         const searchForm = $('#search_form');
         const isDesktop = $(window).width() > 1024;
 
-        if ($(window).width() < 1320) {
-            const morePostsSlider = new Swiper('.articles_slider', {
-                slidesPerView: 'auto'
-            });
-        }
-
         if (!isDesktop) {
             const footerTitle = $('.footer__title');
             if (footerTitle.length) {
