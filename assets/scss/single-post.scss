@@ -179,31 +179,8 @@
 }
 
 .additional_content {
-    .card__img {
-        aspect-ratio: 1/1.1;
-        position: relative;
-
-        .card__img_tag {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: $color-main;
-            color: #fff;
-            padding: 8px 16px;
-            border-bottom-right-radius: 12px;
-        }
-
-        a {
-            height: 100%;
-        }
-    }
-
-    .card {
-        width: 100%;
-    }
-
     @include response-min($desktop) {
-        .card {
+        .single__banner {
             max-width: 277px;
         }
     }

@@ -63,9 +63,9 @@
         margin: 0 -10px;
 
         li {
-            padding: 0 10px;
             transition: $transition;
             border-bottom: 1px solid transparent;
+            margin-left: 24px;
 
 
             @include response-min($header-responsive + 1) {
@@ -75,10 +75,6 @@
                     }
 
                     border-color: $color-main;
-                }
-
-                &:not(:last-child) {
-                    margin-right: 24px;
                 }
 
                 &:hover {

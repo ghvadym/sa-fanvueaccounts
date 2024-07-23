@@ -347,17 +347,13 @@ section {
 
     &:active, &:focus {
         outline: none;
-        color: $color-hot;
-        border-color: $color-hot;
-        background: #fff;
+        background: $color-hot-hover;
     }
 
     @include response-min($desktop) {
         &:hover {
             outline: none;
-            color: $color-hot;
-            border-color: $color-hot;
-            background: #fff;
+            background: $color-hot-hover;
         }
     }
 }
@@ -671,6 +667,10 @@ section {
         display: flex;
         align-items: center;
         margin-left: -16px;
+
+        @include response-min($desktop) {
+            margin-bottom: 20px;
+        }
     }
 
     .owl-item {
