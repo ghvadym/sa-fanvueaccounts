@@ -655,6 +655,7 @@ section {
 .archive {
     .search {
         margin-bottom: 48px;
+        padding: 0;
 
         @include response-max($mobile) {
             margin-bottom: 32px;

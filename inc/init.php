@@ -3,7 +3,11 @@
 const DOMAIN = 'fvacc';
 
 if (!defined('POSTS_PER_PAGE')) {
-    define('POSTS_PER_PAGE', get_option('posts_per_page') ?: 16);
+    define('POSTS_PER_PAGE', get_option('posts_per_page') ?: 12);
+}
+
+if (!defined('TOTAL_POSTS')) {
+    define('TOTAL_POSTS',  wp_count_posts()->publish);
 }
 
 $files = [

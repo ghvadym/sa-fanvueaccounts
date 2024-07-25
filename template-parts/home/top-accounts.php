@@ -26,7 +26,7 @@ if (empty($posts)) {
                 ]);
             } ?>
         </div>
-        <?php if ($posts > $numberposts) { ?>
+        <?php if (TOTAL_POSTS > count($posts)) { ?>
             <div class="articles__btn">
                 <span id="articles_load" class="btn" data-page="1">
                     <?php _e('Load more', DOMAIN); ?>

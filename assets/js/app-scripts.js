@@ -5,7 +5,6 @@
         const burgerOpen = $('.header_burger_icon');
         const burgerClose = $('.header_close_icon');
         const header = $('#header');
-        const searchForm = $('#search_form');
         const isDesktop = $(window).width() > 1024;
 
         if (!isDesktop) {
@@ -44,29 +43,16 @@
         const articlesLoadBtn = $('#articles_load');
         if (articlesLoadBtn.length) {
             articlesLoadBtn.on('click', function (e) {
-                const search = $('.search__input');
                 let pageNumber = $(this).attr('data-page');
                 pageNumber = parseInt(pageNumber) + 1;
 
-                if (search.length) {
-                    ajaxPosts($(search).val(), pageNumber);
-                } else {
-                    ajaxPosts('', pageNumber);
-                }
+                const termId = $(this).attr('data-cat');
+
+                ajaxPosts(pageNumber, termId);
             });
         }
 
-        if (searchForm.length) {
-            $(document).on('submit', '#search_form', function (e) {
-                e.preventDefault();
-                const searchInput = $(this).find('.search__input');
-                $('#articles_load').attr('data-page', 1);
-
-                ajaxPosts($(searchInput).val());
-            });
-        }
-
-        function ajaxPosts(search = '', pageNumber = 1)
+        function ajaxPosts(pageNumber = 1, termId = '')
         {
             let formData = new FormData();
 
@@ -76,8 +62,11 @@
 
             formData.append('action', 'load_posts');
             formData.append('nonce', nonce);
-            formData.append('search', search);
             formData.append('page', pageNumber);
+
+            if (termId) {
+                formData.append('term', termId);
+            }
 
             jQuery.ajax({
                 type       : 'POST',
@@ -97,10 +86,8 @@
                             $(posts).html(response.posts);
                         }
 
-                        if (response.count === 0 || response.end_posts) {
+                        if (response.end_posts) {
                             $(loadMoreBtn).hide();
-                        } else {
-                            $(loadMoreBtn).show();
                         }
 
                         $(loadMoreBtn).attr('data-page', pageNumber);

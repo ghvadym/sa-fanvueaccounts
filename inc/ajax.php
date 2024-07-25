@@ -10,8 +10,12 @@ function load_posts()
 
     $data = sanitize_post($_POST);
     $page = $data['page'] ?? 1;
-    $search = $data['search'] ?? '';
-    $numberposts = wp_is_mobile() ? 4 : POSTS_PER_PAGE;
+    $termId = $data['term'] ?? 0;
+    $numberposts = POSTS_PER_PAGE;
+
+    if (!$termId && wp_is_mobile()) {
+        $numberposts = 4;
+    }
 
     if (empty($data)) {
         wp_send_json_error('There is no data');
@@ -28,19 +32,31 @@ function load_posts()
         'order'          => 'DESC'
     ];
 
-    if ($search) {
-        $args['s'] = htmlspecialchars($search);
+    if ($termId) {
+        $args['tax_query'] = [
+            'relation' => 'OR',
+            [
+                'taxonomy' => 'category',
+                'field'    => 'id',
+                'terms'    => [$termId]
+            ],
+            [
+                'taxonomy' => 'post_tag',
+                'field'    => 'id',
+                'terms'    => [$termId]
+            ]
+        ];
     }
 
-    $posts = new WP_Query($args);
+    $query = new WP_Query($args);
 
     ob_start();
 
-    if ($posts->have_posts()) {
-        while ($posts->have_posts()) {
-            $posts->the_post();
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
             get_template_part_var('cards/card-post', [
-                'post' => $posts->post
+                'post' => $query->post
             ]);
         }
     } else {
@@ -53,7 +69,7 @@ function load_posts()
     wp_send_json([
         'posts'     => $html,
         'append'    => $page > 1,
-        'count'     => count($posts->posts),
-        'end_posts' => count($posts->posts) < $numberposts
+        'count'     => count($query->posts),
+        'end_posts' => $numberposts * $page >= $query->found_posts
     ]);
 }

@@ -31,11 +31,7 @@ $options = get_fields('options');
                 </div>
                 <?php if (!empty($fields['main_info_text'])) { ?>
                     <div class="text_block">
-                        <?php echo $fields['main_info_text'];
-
-                        if (!empty($fields['main_info_link'])) {
-                            echo link_html($fields['main_info_link'] ?? [], 'card__btn btn_light');
-                        } ?>
+                        <?php echo $fields['main_info_text']; ?>
                     </div>
                 <?php } ?>
             </div>
