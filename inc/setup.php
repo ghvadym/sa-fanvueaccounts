@@ -111,3 +111,17 @@ function disable_emojis_remove_dns_prefetch($urls, $relation_type)
 
     return $urls;
 }
+
+add_action('wp_body_open', 'wp_body_open_call');
+function wp_body_open_call()
+{
+    $advZoneCode = get_field('adv_zone_code', 'options');
+    echo $advZoneCode ?: '';
+}
+
+add_action('wp_footer', 'wp_footer_call');
+function wp_footer_call()
+{
+    $advZoneScript = get_field('adv_zone_script', 'options');
+    echo $advZoneScript ?: '';
+}
