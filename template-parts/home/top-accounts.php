@@ -20,10 +20,20 @@ if (empty($posts)) {
             </h2>
         <?php } ?>
         <div class="articles">
-            <?php foreach ($posts as $post) {
+            <?php
+            $banner = 0;
+            foreach ($posts as $i => $post) {
+                $useBanner = ($i + 1) % ADV_ITERATOR_FOR_CARDS === 0;
+
                 get_template_part_var('cards/card-post', [
-                    'post' => $post
+                    'post'       => $post,
+                    'banner'     => $useBanner,
+                    'bannerNumb' => $banner
                 ]);
+
+                if ($useBanner) {
+                    $banner++;
+                }
             } ?>
         </div>
         <?php if (TOTAL_POSTS > count($posts)) { ?>

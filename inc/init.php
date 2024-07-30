@@ -10,6 +10,10 @@ if (!defined('TOTAL_POSTS')) {
     define('TOTAL_POSTS',  wp_count_posts()->publish);
 }
 
+if (!defined('ADV_ITERATOR_FOR_CARDS')) {
+    define('ADV_ITERATOR_FOR_CARDS',  wp_is_mobile() ? 3 : 6);
+}
+
 $files = [
     'helper',
     'custom_functions',

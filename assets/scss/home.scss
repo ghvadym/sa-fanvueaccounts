@@ -73,6 +73,16 @@
     }
 }
 
+.search {
+    .banner {
+        margin: 48px 0;
+
+        @include response-max($mobile) {
+            margin: 32px 0;
+        }
+    }
+}
+
 .search__buttons {
     margin-top: 48px;
     display: flex;
@@ -96,6 +106,16 @@
 
     @include response-max($mobile) {
         height: 70px;
+    }
+}
+
+.tags {
+    .banner {
+        margin: 64px 0 0;
+
+        @include response-max($mobile) {
+            margin: 40px 0 0;
+        }
     }
 }
 

@@ -26,5 +26,17 @@ if (empty($terms)) {
                 </a>
             <?php } ?>
         </div>
+        <?php if (!empty($fields['bottom_adv_banner_type'])) { ?>
+            <div class="banner">
+                <?php if ($fields['bottom_adv_banner_type'] === 'html') {
+                    echo !empty($fields['bottom_adv_banner_html']) ? $fields['bottom_adv_banner_html'] : '';
+                } else if ($fields['bottom_adv_banner_type'] === 'img') {
+                    echo get_banner(
+                        !wp_is_mobile() ? ($fields['bottom_adv_banner_img'] ?? '') : ($fields['bottom_adv_banner_img_mob'] ?? ''),
+                        $fields['bottom_adv_banner_url'] ?? ''
+                    );
+                } ?>
+            </div>
+        <?php } ?>
     </div>
 </section>
