@@ -73,16 +73,6 @@
     }
 }
 
-.search {
-    .banner {
-        margin: 48px 0;
-
-        @include response-max($mobile) {
-            margin: 32px 0;
-        }
-    }
-}
-
 .search__buttons {
     margin-top: 48px;
     display: flex;

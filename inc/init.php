@@ -11,7 +11,7 @@ if (!defined('TOTAL_POSTS')) {
 }
 
 if (!defined('ADV_ITERATOR_FOR_CARDS')) {
-    define('ADV_ITERATOR_FOR_CARDS',  wp_is_mobile() ? 3 : 6);
+    define('ADV_ITERATOR_FOR_CARDS', wp_is_mobile() ? 3 : 5);
 }
 
 $files = [

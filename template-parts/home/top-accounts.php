@@ -1,9 +1,7 @@
 <?php
 
-$numberposts = wp_is_mobile() ? 4 : POSTS_PER_PAGE;
-
 $posts = _get_posts([
-    'numberposts' => $numberposts
+    'numberposts' => POSTS_PER_PAGE
 ]);
 
 if (empty($posts)) {

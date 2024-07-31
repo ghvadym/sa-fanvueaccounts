@@ -14,18 +14,7 @@
                 <?php } ?>
             </div>
         <?php } ?>
-        <?php if (!empty($fields['search_adv_banner_type'])) { ?>
-            <div class="banner">
-                <?php if ($fields['search_adv_banner_type'] === 'html') {
-                    echo !empty($fields['search_adv_banner_html']) ? $fields['search_adv_banner_html'] : '';
-                } else if ($fields['search_adv_banner_type'] === 'img') {
-                    echo get_banner(
-                        !wp_is_mobile() ? ($fields['search_adv_banner_img'] ?? '') : ($fields['search_adv_banner_img_mob'] ?? ''),
-                        $fields['search_adv_banner_url'] ?? ''
-                    );
-                } ?>
-            </div>
-        <?php } ?>
+        <?php adv_banner_group($fields['search_adv_banner'] ?? [], 'banner_full_width'); ?>
         <form role="search" method="get" id="searchform" class="search__form" action="<?php echo home_url(); ?>">
             <div class="search__form_body">
                 <input type="text" value="" name="s" id="s" class="search__input" placeholder="<?php _e('Search', DOMAIN); ?>">

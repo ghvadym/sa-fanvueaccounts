@@ -751,3 +751,11 @@ section {
         border-radius: 12px;
     }
 }
+
+.banner_full_width {
+    margin: 48px 0;
+
+    @include response-max($mobile) {
+        margin: 32px 0;
+    }
+}

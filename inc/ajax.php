@@ -11,7 +11,12 @@ function load_posts()
     $data = sanitize_post($_POST);
     $page = $data['page'] ?? 1;
     $termId = $data['term'] ?? 0;
+
+    $advFields = get_field('cards_banner', 'options');
+    $advItemsCount = !empty($advFields) ? count($advFields) : 0;
+
     $numberposts = POSTS_PER_PAGE;
+    $offset = ($page - 1) * ($numberposts);
 
     if (!$termId && wp_is_mobile()) {
         $numberposts = 4;
@@ -22,12 +27,20 @@ function load_posts()
         return;
     }
 
+    if ($advItemsCount) {
+        $numberposts += $advItemsCount;
+
+        if ($page > 2) {
+            $offset += $advItemsCount;
+        }
+    }
+
     $args = [
         'post_type'      => 'post',
         'post_status'    => 'publish',
         'posts_per_page' => $numberposts,
         'paged'          => $page,
-        'offset'         => ($page - 1) * $numberposts,
+        'offset'         => $offset,
         'orderby'        => 'DATE',
         'order'          => 'DESC'
     ];
@@ -70,6 +83,8 @@ function load_posts()
         'posts'     => $html,
         'append'    => $page > 1,
         'count'     => count($query->posts),
-        'end_posts' => $numberposts * $page >= $query->found_posts
+        'end_posts' => ($numberposts - $advItemsCount) * $page >= $query->found_posts,
+        'n' => $numberposts,
+        'o' => $offset
     ]);
 }

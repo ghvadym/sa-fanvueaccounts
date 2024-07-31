@@ -270,3 +270,27 @@ function get_banner_field($key = '', $postFields = [], $optionFields = [], $mob 
 
     return !empty($postFields[$key]) ? $postFields[$key] : ($optionFields[$key] ?? null);
 }
+
+function adv_banner_group($field = [], $classes = '')
+{
+    if (empty($field) || empty($field['type'])) {
+        return;
+    }
+
+    echo sprintf('<div class="banner %1$s">', $classes);
+
+    if ($field['type'] === 'html') {
+
+        echo !empty($field['html']) ? $field['html'] : '';
+
+    } else if ($field['type'] === 'img') {
+
+        echo get_banner(
+            !wp_is_mobile() ? ($field['img'] ?? '') : ($field['img_mob'] ?? ''),
+            $field['url'] ?? ''
+        );
+
+    }
+
+    echo '</div>';
+}
