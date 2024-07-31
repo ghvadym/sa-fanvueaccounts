@@ -76,14 +76,14 @@ if (empty($advBannersGallery)) {
                                     <?php echo $fields['onlyfans_title']; ?>
                                 </h2>
                             <?php } ?>
-                            <?php echo $fields['onlyfans_text']; ?>
+                            <?php if (!empty($fields['onlyfans_text'])) { ?>
+                                <?php echo $fields['onlyfans_text']; ?>
+                            <?php } ?>
                         </div>
                     <?php } ?>
-                    <?php if (!empty($fields['adv_banner_5'])) { ?>
-                        <div class="single__banner">
-                            <?php adv_banner_group($fields['adv_banner_5'] ?? [], $options['adv_banner_5'] ?? []); ?>
-                        </div>
-                    <?php } ?>
+                    <div class="single__banner">
+                        <?php adv_banner_group($fields['adv_banner_5'] ?? [], $options['adv_banner_5'] ?? []); ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@ if (empty($advBannersGallery)) {
                     <?php } ?>
                 <?php } else { ?>
                     <div class="banners_gallery__item">
-                        <?php banner_field(end($fields['adv_banners_gallery'])); ?>
+                        <?php banner_field(end($advBannersGallery)); ?>
                     </div>
                 <?php } ?>
             </div>

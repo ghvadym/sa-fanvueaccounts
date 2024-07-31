@@ -26,7 +26,7 @@ $i = 1;
                 <div class="socials__slider_item item">
                     <?php echo $slideImg; ?>
                 </div>
-                <?php if ($i === $bannerPosition && !empty($fields['adv_banner_2'])) { ?>
+                <?php if ($i === $bannerPosition && (!empty($fields['adv_banner_2']) || !empty($options['adv_banner_2']))) { ?>
                     <div class="socials__slider_item item">
                         <?php adv_banner_group($fields['adv_banner_2'] ?? [], $options['adv_banner_2'] ?? []); ?>
                     </div>
@@ -38,7 +38,7 @@ $i = 1;
     <?php } ?>
 </section>
 
-<?php if (!empty($fields['adv_banner_3'])) { ?>
+<?php if (!empty($fields['adv_banner_3']) || !empty($options['adv_banner_3'])) { ?>
     <div class="container">
         <?php adv_banner_group($fields['adv_banner_3'] ?? [], $options['adv_banner_3'] ?? [], 'banner_full_width'); ?>
     </div>
