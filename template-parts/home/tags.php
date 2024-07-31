@@ -26,6 +26,6 @@ if (empty($terms)) {
                 </a>
             <?php } ?>
         </div>
-        <?php adv_banner_group($fields['bottom_adv_banner'] ?? [], 'banner_full_width'); ?>
+        <?php banner_field($fields['bottom_adv_banner'] ?? [], 'banner_full_width'); ?>
     </div>
 </section>

@@ -238,3 +238,15 @@
         max-width: 380px;
     }
 }
+
+.banners_gallery__list {
+    @include response-min($laptop-landscape) {
+        display: flex;
+        gap: 32px;
+    }
+
+    .banners_gallery__item {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}

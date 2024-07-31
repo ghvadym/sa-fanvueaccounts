@@ -13,7 +13,7 @@ if (isset($bannerNumb)) {
 
 <?php if (!empty($banner) && !empty($advField)) { ?>
     <div class="article">
-        <?php adv_banner_group($advField); ?>
+        <?php banner_field($advField); ?>
     </div>
 <?php } ?>
 

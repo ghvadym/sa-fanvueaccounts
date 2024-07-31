@@ -10,10 +10,7 @@ if (empty($faq_list)) {
             <?php _e('FAQs', DOMAIN); ?>
         </h2>
         <?php if (is_category() || is_tag()) {
-            adv_banner_group(
-                get_field('archive_faq_adv_banner', 'options'),
-                'banner_full_width'
-            );
+            banner_field(get_field('archive_faq_adv_banner', 'options'), 'banner_full_width');
         } ?>
         <div class="faq__list">
             <?php foreach ($faq_list as $faq_item) { ?>

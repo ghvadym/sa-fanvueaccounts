@@ -7,10 +7,7 @@ $queriedObject = get_queried_object();
 
     <section class="archive">
         <div class="container">
-            <?php adv_banner_group(
-                get_field('archive_top_adv_banner', 'options'),
-                'banner_full_width'
-            ); ?>
+            <?php banner_field(get_field('archive_top_adv_banner', 'options'), 'banner_full_width'); ?>
             <h1 class="archive__title title_main">
                 <?php echo $term->name; ?>
             </h1>

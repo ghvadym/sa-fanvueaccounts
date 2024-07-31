@@ -26,12 +26,9 @@ $i = 1;
                 <div class="socials__slider_item item">
                     <?php echo $slideImg; ?>
                 </div>
-                <?php if ($i === $bannerPosition && $sliderBannerImage = get_banner_field('banner_2_img', $fields, $options ?? [])) { ?>
+                <?php if ($i === $bannerPosition && !empty($fields['adv_banner_2'])) { ?>
                     <div class="socials__slider_item item">
-                        <?php echo get_banner(
-                            $sliderBannerImage,
-                            get_banner_field('banner_2_url', $fields, $options ?? [])
-                        ); ?>
+                        <?php adv_banner_group($fields['adv_banner_2'] ?? [], $options['adv_banner_2'] ?? []); ?>
                     </div>
                 <?php }
 
@@ -41,11 +38,8 @@ $i = 1;
     <?php } ?>
 </section>
 
-<?php if ($bannerImage = get_banner_field('banner_3_img', $fields, $options ?? [], true)) { ?>
+<?php if (!empty($fields['adv_banner_3'])) { ?>
     <div class="container">
-        <?php echo get_banner(
-            $bannerImage,
-            get_banner_field('banner_3_url', $fields, $options ?? [])
-        ); ?>
+        <?php adv_banner_group($fields['adv_banner_3'] ?? [], $options['adv_banner_3'] ?? [], 'banner_full_width'); ?>
     </div>
 <?php } ?>

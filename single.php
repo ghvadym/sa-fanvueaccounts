@@ -4,6 +4,12 @@ get_header();
 $post = get_post();
 $fields = get_fields($post->ID);
 $options = get_fields('options');
+
+$advBannersGallery = $fields['adv_banners_gallery'] ?? [];
+
+if (empty($advBannersGallery)) {
+    $advBannersGallery = $options['adv_banners_gallery'] ?? [];
+}
 ?>
 
 <section class="single_hero">
@@ -11,10 +17,7 @@ $options = get_fields('options');
         <h1 class="single__title">
             <?php echo $post->post_title; ?>
         </h1>
-        <?php echo get_banner(
-            get_banner_field('banner_1_img', $fields, $options, true),
-            get_banner_field('banner_1_url', $fields, $options)
-        ); ?>
+        <?php adv_banner_group($fields['adv_banner_1'] ?? [], $options['adv_banner_1'] ?? [], 'banner_full_width'); ?>
     </div>
 </section>
 
@@ -49,14 +52,9 @@ $options = get_fields('options');
         <div class="container">
             <div class="single__content">
                 <div class="single__content_row">
-                    <?php if ($galleryTextBanner = get_banner_field('banner_4_img', $fields, $options)) { ?>
-                        <div class="single__banner">
-                            <?php echo get_banner(
-                                $galleryTextBanner,
-                                get_banner_field('banner_4_url', $fields, $options)
-                            ); ?>
-                        </div>
-                    <?php } ?>
+                    <div class="single__banner">
+                        <?php adv_banner_group($fields['adv_banner_4'] ?? [], $options['adv_banner_4'] ?? []); ?>
+                    </div>
                     <div class="text_block">
                         <?php echo $fields['gallery_text']; ?>
                     </div>
@@ -81,12 +79,9 @@ $options = get_fields('options');
                             <?php echo $fields['onlyfans_text']; ?>
                         </div>
                     <?php } ?>
-                    <?php if ($onlyFansBanner = get_banner_field('banner_5_img', $fields, $options)) { ?>
+                    <?php if (!empty($fields['adv_banner_5'])) { ?>
                         <div class="single__banner">
-                            <?php echo get_banner(
-                                $onlyFansBanner,
-                                get_banner_field('banner_5_url', $fields, $options)
-                            ); ?>
+                            <?php adv_banner_group($fields['adv_banner_5'] ?? [], $options['adv_banner_5'] ?? []); ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -95,17 +90,34 @@ $options = get_fields('options');
     </section>
 <?php } ?>
 
-<?php if (!empty($fields['content'])) { $showBanner = true; ?>
+<?php if (!empty($fields['content'])) {?>
     <?php foreach ($fields['content'] as $contentItem) {
         get_template_part_var('single/content', [
             'content'     => $contentItem,
             'fields'      => $fields,
             'options'     => $options,
-            'show_banner' => $showBanner
         ]);
-
-        $showBanner = false;
     } ?>
+<?php } ?>
+
+<?php if (!empty($advBannersGallery)) { ?>
+    <section class="adv_banners_gallery">
+        <div class="container">
+            <div class="banners_gallery__list">
+                <?php if (!wp_is_mobile()) { ?>
+                    <?php foreach ($advBannersGallery as $bannerGalleryItem) { ?>
+                        <div class="banners_gallery__item">
+                            <?php banner_field($bannerGalleryItem); ?>
+                        </div>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div class="banners_gallery__item">
+                        <?php banner_field(end($fields['adv_banners_gallery'])); ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
 <?php } ?>
 
 <?php

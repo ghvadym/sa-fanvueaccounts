@@ -18,10 +18,6 @@ function load_posts()
     $numberposts = POSTS_PER_PAGE;
     $offset = ($page - 1) * ($numberposts);
 
-    if (!$termId && wp_is_mobile()) {
-        $numberposts = 4;
-    }
-
     if (empty($data)) {
         wp_send_json_error('There is no data');
         return;
@@ -33,6 +29,11 @@ function load_posts()
         if ($page > 2) {
             $offset += $advItemsCount;
         }
+
+        /*if ($page > 3) {
+            $offset += ($advItemsCount + $advItemsCount);
+            $numberposts += $advItemsCount;
+        }*/
     }
 
     $args = [
@@ -83,8 +84,6 @@ function load_posts()
         'posts'     => $html,
         'append'    => $page > 1,
         'count'     => count($query->posts),
-        'end_posts' => ($numberposts - $advItemsCount) * $page >= $query->found_posts,
-        'n' => $numberposts,
-        'o' => $offset
+        'end_posts' => ($numberposts * $page - $advItemsCount) >= $query->found_posts
     ]);
 }

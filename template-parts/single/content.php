@@ -20,6 +20,11 @@ if ($contentImgId) {
                     <?php echo $contentTitle; ?>
                 </h2>
             <?php } ?>
+            <?php if (!empty($content['adv_banner']) && $content['adv_banner']['position'] === 'top') { ?>
+                <div class="single__content__banner">
+                    <?php banner_field($content['adv_banner'], 'banner_full_width'); ?>
+                </div>
+            <?php } ?>
             <?php if (!empty($contentImg)) { ?>
                 <div class="single__content_img">
                     <?php echo $contentImg; ?>
@@ -30,17 +35,14 @@ if ($contentImgId) {
                     <?php echo $contentText; ?>
                 </div>
             <?php } ?>
-            <?php if (!empty($show_banner) && $contentBanner = get_banner_field('banner_6_img', $fields ?? [], $options ?? [], true)) { ?>
-                <div class="single__content__banner">
-                    <?php echo get_banner(
-                        $contentBanner,
-                        get_banner_field('banner_6_url', $fields ?? [], $options ?? [])
-                    ); ?>
-                </div>
-            <?php } ?>
             <?php if (!empty($content['adv_btn'])) { ?>
                 <div class="single__content__btn">
                     <?php echo link_html($content['adv_btn'], 'card__btn btn_hot'); ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($content['adv_banner']) && $content['adv_banner']['position'] === 'bottom') { ?>
+                <div class="single__content__banner">
+                    <?php banner_field($content['adv_banner'], 'banner_full_width'); ?>
                 </div>
             <?php } ?>
         </div>

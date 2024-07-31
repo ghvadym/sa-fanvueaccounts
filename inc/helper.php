@@ -258,35 +258,24 @@ function get_banner($imgId = 0, $url = ''): string
     );
 }
 
-function get_banner_field($key = '', $postFields = [], $optionFields = [], $mob = false)
+function banner_field($field = [], $classes = '')
 {
-    if (!$key || (empty($postFields) && empty($optionFields))) {
-        return null;
-    }
-
-    if ($mob && wp_is_mobile()) {
-        $key .= '_mob';
-    }
-
-    return !empty($postFields[$key]) ? $postFields[$key] : ($optionFields[$key] ?? null);
-}
-
-function adv_banner_group($field = [], $classes = '')
-{
-    if (empty($field) || empty($field['type'])) {
+    if (empty($field)) {
         return;
     }
 
+    $type = $field['type'] ?? 'img';
+
     echo sprintf('<div class="banner %1$s">', $classes);
 
-    if ($field['type'] === 'html') {
+    if ($type === 'html') {
 
         echo !empty($field['html']) ? $field['html'] : '';
 
-    } else if ($field['type'] === 'img') {
+    } else if ($type === 'img') {
 
         echo get_banner(
-            !wp_is_mobile() ? ($field['img'] ?? '') : ($field['img_mob'] ?? ''),
+            !wp_is_mobile() ? ($field['img'] ?? '') : ($field['img_mob'] ?: ($field['img'] ?? '')),
             $field['url'] ?? ''
         );
 
@@ -294,3 +283,19 @@ function adv_banner_group($field = [], $classes = '')
 
     echo '</div>';
 }
+
+function adv_banner_group($field = [], $option = [], $classes = '')
+{
+    if (empty($field) && empty($option)) {
+        return;
+    }
+
+    $type = $field['type'] ?? 'img';
+
+    if (($type === 'html' && empty($field['html'])) || ($type === 'img' && (empty($field['img']) && empty($field['img_mob'])))) {
+        $field = $option;
+    }
+
+    banner_field($field, $classes);
+}
+
