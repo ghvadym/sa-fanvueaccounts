@@ -7,7 +7,6 @@ $terms = get_terms([
 ]);
 
 if (empty($terms)) {
-    echo sprintf('<div class="container"><h3>%s</h3></div>', __('There are no categories and hashtags', DOMAIN));
     return;
 }
 ?>
@@ -26,6 +25,5 @@ if (empty($terms)) {
                 </a>
             <?php } ?>
         </div>
-        <?php banner_field($fields['bottom_adv_banner'] ?? [], 'banner_full_width'); ?>
     </div>
 </section>

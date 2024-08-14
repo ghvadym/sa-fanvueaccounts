@@ -266,17 +266,25 @@ function banner_field($field = [], $classes = '')
 
     $type = $field['type'] ?? 'img';
 
+    if ($type === 'html' && empty($field['html'])) {
+        return;
+    }
+
+    if ($type === 'img' && (empty($field['img']) && empty($field['img_mob'])) && empty($field['url'])) {
+        return;
+    }
+
     echo sprintf('<div class="banner %1$s">', $classes);
 
     if ($type === 'html') {
 
-        echo !empty($field['html']) ? $field['html'] : '';
+        echo $field['html'];
 
     } else if ($type === 'img') {
 
         echo get_banner(
             !wp_is_mobile() ? ($field['img'] ?? '') : ($field['img_mob'] ?: ($field['img'] ?? '')),
-            $field['url'] ?? ''
+            $field['url']
         );
 
     }
@@ -297,5 +305,40 @@ function adv_banner_group($field = [], $option = [], $classes = '')
     }
 
     banner_field($field, $classes);
+}
+
+function acf_repeater($postId = 0, $key = '', $subfields = [])
+{
+    $repeater = [];
+
+    if (!$postId || !$key || empty($subfields)) {
+        return $repeater;
+    }
+
+    $repeaterVal = get_post_meta($postId, $key, true);
+
+    if (!$repeaterVal) {
+        return [];
+    }
+
+    for ($i = 0; $i < (int)$repeaterVal; $i++) {
+        foreach ($subfields as $subfield) {
+            $subFieldKey = $key . '_' . $i . '_' . $subfield;
+            $subFieldVal = get_post_meta($postId, $subFieldKey, true) ?: '';
+
+            if (!$subFieldVal) {
+                continue;
+            }
+
+            $repeater[$i][$subfield] = $subFieldVal;
+        }
+    }
+
+    return $repeater;
+}
+
+function post_meta_field($field = [])
+{
+    return !empty($field) ? $field[0] : null;
 }
 

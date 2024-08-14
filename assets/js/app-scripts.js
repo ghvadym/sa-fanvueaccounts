@@ -17,6 +17,8 @@
             }
         }
 
+        /* ---------- */
+
         if (header.length) {
             if ($(document).scrollTop() > 30) {
                 header.addClass('_scrolled');
@@ -39,6 +41,8 @@
                 $('html').toggleClass('no-scroll');
             });
         }
+
+        /* ---------- */
 
         const articlesLoadBtn = $('#articles_load');
         if (articlesLoadBtn.length) {
@@ -101,6 +105,8 @@
             });
         }
 
+        /* ---------- */
+
         const carouselSlider = $('.owl-carousel');
         if (carouselSlider.length) {
             let carouselSliderArgs = {
@@ -152,6 +158,113 @@
                     carouselSliderOwl.trigger('next.owl.carousel', [400]);
                 }
             });
+        }
+
+        /* ---------- */
+
+        const pushNotificationsBtn = $('.close_btn');
+        if (pushNotificationsBtn.length) {
+            $(document).on('click', '.close_btn', function () {
+                const wrap = $(this).closest('.push_notification');
+                const id = $(wrap).attr('id');
+
+                if (!localStorage.getItem(id)) {
+                    localStorage.setItem(id, '1');
+                }
+
+                if (wrap.length) {
+                    $(wrap).removeClass('show_up');
+                }
+            });
+        }
+
+        /* ---------- */
+
+        const pushNotifications = window.aingSettings.pushNotifications;
+        const notifications = [
+            'notification-square',
+            'notification-wide'
+        ];
+
+        $(notifications).each(function (index, item) {
+            if (!pushNotifications.hasOwnProperty('display') || pushNotifications.display === '0') {
+                return false;
+            }
+
+            if (pushNotifications.display === 'each_page') {
+                localStorage.removeItem(item);
+            } else {
+                if (localStorage.getItem(item)) {
+                    return;
+                }
+            }
+
+            const notification = $('#'+item);
+            if (notification.length) {
+                const delay = $(notification).data('delay');
+
+                if (delay) {
+                    setTimeout(function () {
+                        $(notification).addClass('show_up');
+                    }, delay );
+                } else {
+                    $(notification).addClass('show_up');
+                }
+            }
+        });
+
+        /* ---------- */
+
+        const clickUnder = window.aingSettings.clickUnder;
+        if (clickUnder && clickUnder.hasOwnProperty('activation') && clickUnder.hasOwnProperty('adv_url') && clickUnder.activation !== '0' && clickUnder.adv_url) {
+            sessionStorage.setItem('click_under_clicked', '0');
+
+            $(document).on('click', 'a, .close_btn', function (e) {
+                const clickUnderStatusKey = 'click_under_status';
+                const clicked = sessionStorage.getItem('click_under_clicked') === '1';
+
+                if (clickUnder.activation === 'once' && localStorage.getItem(clickUnderStatusKey)) {
+                    return;
+                }
+
+                if (clickUnder.activation === 'once_a_session' && sessionStorage.getItem(clickUnderStatusKey)) {
+                    return;
+                }
+
+                if ((clickUnder.activation === 'each_1_click' || clickUnder.activation === 'each_2_click' || clickUnder.activation === 'each_3_click') && (!clickUnder.hasOwnProperty('allowed') || clickUnder.allowed === '0' || clicked)) {
+                    return;
+                }
+
+                if (clickUnder.activation === 'by_time' && (!clickUnder.hasOwnProperty('allowed') || clickUnder.allowed === '0' || clicked)) {
+                    return;
+                }
+
+                e.preventDefault();
+                clickUnderOpenLink(clickUnder.adv_url);
+
+                if (clickUnder.activation === 'once') {
+                    localStorage.setItem(clickUnderStatusKey, '1');
+                } else {
+                    localStorage.removeItem(clickUnderStatusKey);
+                }
+
+                if (clickUnder.activation === 'once_a_session') {
+                    sessionStorage.setItem(clickUnderStatusKey, '1');
+                } else {
+                    sessionStorage.removeItem(clickUnderStatusKey);
+                }
+            });
+        }
+
+        function clickUnderOpenLink(url)
+        {
+            if (!url) {
+                return false;
+            }
+
+            window.open(url, '_blank');
+            window.focus();
+            sessionStorage.setItem('click_under_clicked', '1');
         }
     });
 })(jQuery);

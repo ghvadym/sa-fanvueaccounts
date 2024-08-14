@@ -11,29 +11,11 @@ function load_posts()
     $data = sanitize_post($_POST);
     $page = $data['page'] ?? 1;
     $termId = $data['term'] ?? 0;
-
-    $advFields = get_field('cards_banner', 'options');
-    $advItemsCount = !empty($advFields) ? count($advFields) : 0;
-
     $numberposts = POSTS_PER_PAGE;
-    $offset = ($page - 1) * ($numberposts);
 
     if (empty($data)) {
         wp_send_json_error('There is no data');
         return;
-    }
-
-    if ($advItemsCount) {
-        $numberposts += $advItemsCount;
-
-        if ($page > 2) {
-            $offset += $advItemsCount;
-        }
-
-        /*if ($page > 3) {
-            $offset += ($advItemsCount + $advItemsCount);
-            $numberposts += $advItemsCount;
-        }*/
     }
 
     $args = [
@@ -41,7 +23,7 @@ function load_posts()
         'post_status'    => 'publish',
         'posts_per_page' => $numberposts,
         'paged'          => $page,
-        'offset'         => $offset,
+        'offset'         => ($page - 1) * $numberposts,
         'orderby'        => 'DATE',
         'order'          => 'DESC'
     ];
@@ -84,6 +66,6 @@ function load_posts()
         'posts'     => $html,
         'append'    => $page > 1,
         'count'     => count($query->posts),
-        'end_posts' => ($numberposts * $page - $advItemsCount) >= $query->found_posts
+        'end_posts' => $numberposts * $page >= $query->found_posts
     ]);
 }
